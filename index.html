@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jimpitan RT 009 RW 007</title>
+  <link rel="icon" type="image/png" href="logo2.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding-top: 10px;
+      font-family: 'Poppins', sans-serif;
+      background-color: #fefefe;
+      color: #333;
+    }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      padding: 20px;
+      background-color: #b00020;
+      color: white;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 10px 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    header img { height: 40px; }
+    .tab-menu {
+      display: flex;
+      background: #ffe5e5;
+      margin: 20px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .tab-menu button {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      background: #ffd6d6;
+      font-size: 16px;
+      font-weight: 600;
+      color: #b00020;
+      cursor: pointer;
+    }
+    .tab-menu button.active {
+      background: #b00020;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .tab-content.active { display: block; }
+    input, select, button {
+      font-size: 16px;
+      padding: 12px;
+      margin-bottom: 16px;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: right;
+    }
+    th:first-child, td:first-child { text-align: left; }
+    th {
+      background-color: #ffe5e5;
+      color: #b00020;
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .btn-hapus {
+      background: #b00020;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .rekap-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .rekap-item {
+      display: flex;
+      background: #fff3f3;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 15px;
+    }
+    .rekap-item .nama {
+      flex: 1;
+      text-align: left;
+    }
+    .rekap-item .nominal {
+      width: 100px;
+      text-align: right;
+      font-weight: 600;
+    }
+    .rekap-harian {
+      margin-top: 30px;
+      font-size: 15px;
+    }
+    .rekap-harian div {
+      background: #f8f8f8;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .tab-wrapper {
+      padding: 0 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo" />
+    Jimpitan RT 9 RW 7
+  </header>
+
+  <div class="tab-wrapper">
+    <div class="tab-menu">
+      <button class="active" onclick="switchTab('inputTab', this)">Input</button>
+      <button onclick="switchTab('tabelTab', this)">Tabel</button>
+      <button onclick="switchTab('rekapTab', this)">Ringkasan</button>
+    </div>
+
+    <!-- Input Tab -->
+    <div class="tab-content active" id="inputTab">
+      <input list="wargaList" id="nama" placeholder="Nama warga..." />
+      <datalist id="wargaList">
+        <option value="ADI/MBAH PITA">
+        <option value="AGUNG TRIARSO">
+        <option value="AGUS PURBOYONO">
+        <option value="AGUS SUHERMAN">
+        <option value="AHMAD JAUHARUL FARID">
+        <option value="ALI FATAH">
+        <option value="ALI IMRON">
+        <option value="AMIN SETYONO">
+        <option value="ARIS SAMITIO">
+        <option value="BENNY">
+        <option value="BUDI BAGUS SANTOSO">
+        <option value="DASUKI">
+        <option value="FAIZIN">
+        <option value="GIANTO">
+        <option value="HARNO">
+        <option value="HARTOPO">
+        <option value="JOKO/MBAK YANA">
+        <option value="KOZIN">
+        <option value="KUSNADI">
+        <option value="MARIYO">
+        <option value="MOCH ALY MAS AD">
+        <option value="MUHAMMAD AGUS">
+        <option value="NGALI">
+        <option value="NUR AZIS">
+        <option value="NUR KHOLISH">
+        <option value="PAULUS IRAWAN">
+        <option value="PURWANTO">
+        <option value="RAGIL SANTOSO">
+        <option value="REZA">
+        <option value="RISTANTO ARIS SAPUTRO">
+        <option value="RIZKI AGUNG UTOMO">
+        <option value="ROS HARMANTO">
+        <option value="SARJO">
+        <option value="SLAMET">
+        <option value="SLAMET UTOMO">
+        <option value="SOLEKAN">
+        <option value="SUBCHAN">
+        <option value="SUGIONO">
+        <option value="SUGIYANTO">
+        <option value="SUJONO">
+        <option value="SUPRIYADI">
+        <option value="SUPRIYANTO">
+        <option value="SUWITO">
+        <option value="SUYANTONO">
+        <option value="UMAR SADLI">
+        <option value="WIDODO">
+        <option value="YUSUF LUKMAN HAKIM">
+        <option value="YOGA">
+        <option value="YOLANDA">
+
+
+      </datalist>
+      <select id="jumlah">
+        <option value="">Pilih jumlah</option>
+        <option value="0">0</option>
+        <option value="500">500</option>
+        <option value="1000">1.000</option>
+        <option value="1500">1.500</option>
+        <option value="2000">2.000</option>
+        <option value="2500">2.500</option>
+        <option value="3000">3.000</option>
+        <option value="3500">3.500</option>
+        <option value="4000">4.000</option>
+        <option value="4500">4.500</option>
+        <option value="5000">5.000</option>
+        <option value="5500">5.500</option>
+        <option value="6000">6.000</option>
+        <option value="6500">6.500</option>
+        <option value="7000">7.000</option>
+        <option value="7500">7.500</option>
+        <option value="8000">8.000</option>
+        <option value="8500">8.500</option>
+        <option value="9000">9.000</option>
+        <option value="9500">9.500</option>
+        <option value="1000">10.000</option>
+        <option value="1500">10.500</option>
+        <option value="1100">11.000</option>
+        <option value="1500">11.500</option>
+        <option value="1200">12.000</option>
+        <option value="12500">12.500</option>
+        <option value="13000">13.000</option>
+        <option value="13500">13.500</option>
+        <option value="14000">14.000</option>
+        <option value="14500">14.500</option>
+            <option value="15000">15.000</option>
+        <option value="15500">15.500</option>
+      </select>
+      <input type="date" id="tanggal" />
+      <button onclick="tambahData()">Tambah</button>
+    </div>
+
+    <!-- Tabel Data -->
+    <div class="tab-content" id="tabelTab">
+      <input type="text" id="filterNama" oninput="tampilkanData()" placeholder="Filter nama..." />
+      <table>
+        <thead><tr><th>Nama</th><th>Jumlah</th><th>Hapus</th></tr></thead>
+        <tbody id="tabelData"></tbody>
+      </table>
+      <div id="keteranganTanggal" style="text-align: right; margin-top: 8px; font-size: 14px; color: #555;"></div>
+      <div class="btn-group">
+        <button onclick="exportExcel()">Export ke Excel</button>
+        <button onclick="exportPDF()">Cetak PDF</button>
+        <button onclick="backupJSON()">Backup Data (.json)</button>
+        <button onclick="resetData()">Reset Semua</button>
+        <button onclick="simpanKeGoogleSheets()">Simpan ke Google Sheets</button>
+      </div>
+    </div>
+
+    <!-- Ringkasan -->
+    <div class="tab-content" id="rekapTab">
+      <h3>Ringkasan Harian</h3>
+      <div class="rekap-harian" id="rekapHari"></div>
+
+      <h3 style="margin-top: 30px;">Tidak Mengisi Jimpitan</h3>
+      <div class="rekap-grid" id="rekapWarga"></div>
+    </div>
+  </div>
+
+  <script>
+    const semuaWarga = [
+        "ADI/MBAH PITA",
+  "AGUNG TRIARSO",
+  "AGUS PURBOYONO",
+  "AGUS SUHERMAN",
+  "AHMAD JAUHARUL FARID",
+  "ALI FATAH",
+  "ALI IMRON",
+  "AMIN SETYONO",
+  "ARIS SAMITIO",
+  "BENNY",
+  "BUDI BAGUS SANTOSO",
+  "DASUKI",
+  "FAIZIN",
+  "GIANTO",
+  "HARNO",
+  "HARTOPO",
+  "JOKO/MBAK YANA",
+  "KOZIN",
+  "KUSNADI",
+  "MARIYO",
+  "MOCH ALY MAS AD",
+  "MUHAMMAD AGUS",
+  "NGALI",
+  "NUR AZIS",
+  "NUR KHOLISH",
+  "PAULUS IRAWAN",
+  "PURWANTO",
+  "RAGIL SANTOSO",
+  "REZA",
+  "RISTANTO ARIS SAPUTRO",
+  "RIZKI AGUNG UTOMO",
+  "ROS HARMANTO",
+  "SARJO",
+  "SLAMET",
+  "SLAMET UTOMO",
+  "SOLEKAN",
+  "SUBCHAN",
+  "SUGIONO",
+  "SUGIYANTO",
+  "SUJONO",
+  "SUPRIYADI",
+  "SUPRIYANTO",
+  "SUWITO",
+  "SUYANTONO",
+  "UMAR SADLI",
+  "WIDODO",
+  "YUSUF LUKMAN HAKIM",
+  "YOGA",
+  "YOLANDA"
+    ];
+
+    let data = JSON.parse(localStorage.getItem("jimpitanData")) || [];
+    document.getElementById("tanggal").valueAsDate = new Date();
+
+    function simpanData() {
+      localStorage.setItem("jimpitanData", JSON.stringify(data));
+    }
+
+    function tambahData() {
+      const nama = document.getElementById("nama").value.trim();
+      const tanggal = document.getElementById("tanggal").value;
+      const jumlah = parseInt(document.getElementById("jumlah").value);
+      if (!nama || !tanggal || isNaN(jumlah)) return alert("Lengkapi semua data.");
+
+      const index = data.findIndex(item => item.nama === nama && item.tanggal === tanggal);
+      if (index !== -1) {
+        data[index].jumlah = jumlah;
+        alert("🔁 Data diperbarui!");
+      } else {
+        data.push({ nama, tanggal, jumlah });
+        alert("✅ Data ditambahkan!");
+      }
+
+      simpanData();
+      tampilkanData();
+      tampilkanRingkasan();
+
+      document.getElementById("nama").value = "";
+      document.getElementById("jumlah").value = "";
+      document.getElementById("tanggal").valueAsDate = new Date();
+    }
+
+    function tampilkanData() {
+      const tbody = document.getElementById("tabelData");
+      const filter = document.getElementById("filterNama").value.toLowerCase();
+      tbody.innerHTML = "";
+      const today = new Date().toISOString().split('T')[0];
+      let totalHari = 0;
+
+      data.filter(item => item.tanggal === today && item.nama.toLowerCase().includes(filter)).forEach((item, i) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${item.nama}</td><td>${item.jumlah.toLocaleString()}</td>
+          <td><button class="btn-hapus" onclick="hapusBaris(${i})">❌</button></td>`;
+        tbody.appendChild(tr);
+        totalHari += item.jumlah;
+      });
+
+      document.getElementById("keteranganTanggal").innerHTML =
+        `<span style="float:left;"><b>${today}</b></span><span><b>Total: ${totalHari.toLocaleString()}</b></span>`;
+    }
+
+    function tampilkanRingkasan() {
+      const hari = {};
+      data.forEach(({ tanggal, jumlah }) => {
+        hari[tanggal] = (hari[tanggal] || 0) + jumlah;
+      });
+
+      document.getElementById("rekapHari").innerHTML = Object.entries(hari)
+        .sort()
+        .map(([tgl, total]) => `<div><span>${tgl}</span><span>${total.toLocaleString()}</span></div>`)
+        .join('') || "Belum ada data";
+
+      const today = new Date().toISOString().split('T')[0];
+      const namaYangIsi = new Set(
+        data.filter(d => d.tanggal === today && d.jumlah > 0).map(d => d.nama)
+      );
+      const wargaTidakIsi = semuaWarga.filter(nama => !namaYangIsi.has(nama));
+
+      document.getElementById("rekapWarga").innerHTML = wargaTidakIsi.map(nama => `
+        <div class="rekap-item">
+          <span class="nama">${nama}</span>
+          <span class="nominal">0</span>
+        </div>
+      `).join('') || "<i>Semua warga sudah mengisi hari ini</i>";
+    }
+
+    function hapusBaris(index) {
+      if (confirm("Yakin hapus baris ini?")) {
+        data.splice(index, 1);
+        simpanData();
+        tampilkanData();
+        tampilkanRingkasan();
+      }
+    }
+
+    function resetData() {
+      if (confirm("Hapus semua data?")) {
+        data = [];
+        simpanData();
+        tampilkanData();
+        tampilkanRingkasan();
+      }
+    }
+
+    function switchTab(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-menu button').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+      if (id === 'tabelTab') tampilkanData();
+      if (id === 'rekapTab') tampilkanRingkasan();
+    }
+
+    function exportExcel() {
+      if (data.length === 0) return alert("Belum ada data.");
+      const unik = Array.from(new Map(data.map(d => [`${d.nama}-${d.tanggal}`, d])).values());
+      const ws = XLSX.utils.json_to_sheet(unik);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Jimpitan");
+      XLSX.writeFile(wb, "data_jimpitan.xlsx");
+    }
+
+    async function exportPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const pageHeight = doc.internal.pageSize.height;
+
+      doc.setFontSize(14);
+      doc.text("Data Jimpitan RT 09", 14, 16);
+
+      let y = 24;
+      doc.setFontSize(11);
+      doc.text("Nama", 14, y);
+      doc.text("Tanggal", 80, y);
+      doc.text("Jumlah", 180, y, { align: "right" });
+      y += 8;
+
+      const unik = Array.from(new Map(data.map(d => [`${d.nama}-${d.tanggal}`, d])).values());
+      for (let item of unik) {
+        doc.text(item.nama, 14, y);
+        doc.text(item.tanggal, 80, y);
+        doc.text(item.jumlah.toLocaleString(), 180, y, { align: "right" });
+        y += 8;
+        if (y > pageHeight - 20) {
+          doc.addPage();
+          y = 20;
+        }
+      }
+
+      doc.save("data_jimpitan.pdf");
+    }
+
+    function backupJSON() {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "backup_jimpitan.json";
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    tampilkanData();
+    tampilkanRingkasan();
+
+    function simpanKeGoogleSheets() {
+  if (data.length === 0) return alert("Tidak ada data untuk disimpan.");
+  fetch('https://script.google.com/macros/s/AKfycbzEOF2DvE0Bcq11agAm5ST1W9bZJkASN8CvhoXQ2MHSh3G4CA0gKIhAJjPL_bCm4jeNIg/exec', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(res => res.text())
+  .then(txt => alert("✅ Berhasil disimpan ke Google Sheets."))
+  .catch(err => alert("❌ Gagal menyimpan: " + err));
+}
+
+
+  </script>
+</body>
+</html>
