@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <!-- Menentukan pengkodean karakter yang digunakan dalam dokumen HTML -->
+  <meta charset="UTF-8" />
+  
+  <!-- Membuat tampilan responsif pada berbagai perangkat dengan mengatur lebar viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <!-- Menentukan judul halaman yang akan ditampilkan di tab browser -->
+  <title>Jimpitan RT 009 RW 007</title>
+  
+  <!-- Menentukan ikon (favicon) yang akan muncul di tab browser -->
+  <link rel="icon" type="image/png" href="logo.png" />
+  
+  <!-- Memuat library html2canvas dari CDN untuk menangkap screenshot elemen HTML -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+ 
+  <!-- Tambahkan font dari Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+
+/* ============================== */
+/* 1. TOMBOL MASUK & VARIASI */
+/* ============================== */
+
+/* Tombol Masuk (normal & aktif glow) */
+.btn-masuk {
+  padding: 12px 24px;
+  font-size: 18px;
+  background: rgb(55, 14, 14); /* warna saat nonaktif */
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: auto;
+  min-width: 50%;
+  max-width: 50vw;
+  transition: all 0.3s ease;
+}
+
+.btn-masuk:disabled {
+  background: rgb(55, 14, 14);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Efek animasi glow saat aktif */
+@keyframes innerGlow {
+  from { box-shadow: inset 0 0 5px #4CAF50; }
+  to { box-shadow: inset 0 0 20px #4CAF50; }
+}
+
+.btn-masuk.glow {
+  background-color: #4CAF50;
+  animation: innerGlow 1s infinite alternate;
+  color: white;
+}
+
+
+/* ============================== */
+/* 2. BODY & GLOBAL */
+/* ============================== */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding-top: 10px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fefefe;
+  color: #333;
+}
+
+
+/* ============================== */
+/* 3. HEADER ATAS */
+/* ============================== */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  background-color: #b00020;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+header img { height: 40px; }
+
+.judul-jimpitan {
+  font-size: 28px;
+  color: rgba(184, 13, 13, 0.8);
+  margin-bottom: 40px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+
+/* ============================== */
+/* 4. TAB MENU & TAB KONTEN */
+/* ============================== */
+
+/* Navigasi Tab */
+.tab-menu {
+  display: flex;
+  background: #ffe5e5;
+  margin: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Tombol dalam Tab */
+.tab-menu button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  background: #ffd6d6;
+  font-size: 20px;
+  font-weight: 600;
+  color: #b00020;
+  cursor: pointer;
+}
+
+/* Tab Aktif */
+.tab-menu button.active,
+.tab-button.active {
+  background-color: #b00020;
+  color: white;
+  font-weight: bold;
+}
+
+/* Konten tiap Tab */
+.tab-content {
+  display: none;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Bungkus Tab (wrapper) */
+.tab-wrapper {
+  padding: 0;
+  max-width: 800px;
+  margin: auto;
+}
+
+
+/* ============================== */
+/* 5. FORM INPUT, SELECT, BUTTON */
+/* ============================== */
+
+input, select, button {
+  font-size: 18px;
+  padding: 12px;
+  margin-bottom: 16px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+
+/* ============================== */
+/* 6. TABEL DAN REKAP */
+/* ============================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: right;
+}
+
+th:first-child, td:first-child {
+  text-align: center;
+}
+
+th {
+  background-color: #ffe5e5;
+  color: #b00020;
+}
+
+/* Rekapan Harian */
+.rekap-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rekap-item {
+  display: flex;
+  background: #fff3f3;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 15px;
+}
+
+.rekap-item .nama {
+  flex: 1;
+  text-align: left;
+}
+
+.rekap-item .nominal {
+  width: 100px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.rekap-harian {
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.rekap-harian div {
+  background: #f8f8f8;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* ============================== */
+/* 7. ANIMASI TOAST & SPINNER */
+/* ============================== */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadein {
+  from { opacity: 0; bottom: 0; }
+  to { opacity: 1; bottom: 30px; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; bottom: 30px; }
+  to { opacity: 0; bottom: 0; }
+}
+
+
+/* ============================== */
+/* 8. PERINGATAN / TEKS KECIL */
+/* ============================== */
+
+.peringatan-reset {
+  font-size: 12px;
+  color: #ffffff;
+  margin-bottom: 6px;
+  opacity: 0.8;
+}
+
+
+
+/* ======================================== */
+/* 🎯 1. TOMBOL - / + HORIZONTAL DI TAB INPUT */
+/* ======================================== */
+.btn-minus,
+.btn-plus {
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 60px;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-minus {
+  left: 0;
+}
+
+.btn-plus {
+  right: 0;
+}
+
+.btn-minus:active {
+  background-color: #ff4d4d; /* Merah saat ditekan */
+  color: white;
+}
+
+.btn-plus:active {
+  background-color: #4CAF50; /* Hijau saat ditekan */
+  color: white;
+}
+
+
+/* ======================================== */
+/* 🎯 3. TOMBOL SQUARE UNTUK INPUT - / +  */
+/* ======================================== */
+button.square-btn {
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  background-color: #eee;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button.square-btn.btn-minus:active {
+  background-color: #f8d7da;
+}
+
+button.square-btn.btn-plus:active {
+  background-color: #d4edda;
+}
+
+
+/* ======================================== */
+/* 🎯 2. TOMBOL TAMBAH DATA (LEBAR PENUH) */
+/* ======================================== */
+.btn-tambah {
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  background-color: #e0e0e0;
+  color: black;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-tambah:active {
+  background-color: #f8f8f8;
+  color: white;
+}
+
+/* ======================================== */
+/* 🎯 5. TABEL & PENATAAN KOLOM */
+/* ======================================== */
+
+/* Header tabel rata tengah */
+table th {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 8px;
+  background-color: #ffe5e5;
+  color: #b00020;
+}
+
+/* Semua isi tabel vertikal tengah */
+table td {
+  vertical-align: middle;
+  padding: 12px 8px;
+  font-size: 16px;
+}
+
+/* Kolom pertama (Nama) rata kiri */
+table td:first-child {
+  text-align: left;
+  padding-left: 12px;
+  font-weight: 500;
+}
+
+/* Kolom tombol edit (+/-) */
+td.edit {
+  padding: 0;
+  text-align: center;
+  vertical-align: middle;
+  height: 60px; /* stabilkan tinggi baris agar sejajar */
+}
+
+
+/* ======================================== */
+/* TOMBOL - + DI KOLOM EDIT
+/* ======================================== */
+  .edit-buttons-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .btn-edit-plus,
+  .btn-edit-minus {
+    width: 45px;
+    height: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .btn-edit-plus {
+    background-color: #ebebeb; /* Hijau muda */
+    color: #155724;
+  }
+
+  .btn-edit-minus {
+    background-color: #ebebeb; /* Merah muda */
+    color: #721c24;
+  }
+
+  .btn-edit-plus:hover {
+    background-color: #c3e6cb;
+  }
+
+  .btn-edit-minus:hover {
+    background-color: #f5c6cb;
+  }
+
+  .btn-edit-plus:active {
+    background-color: #a3d7a5;
+  }
+
+  .btn-edit-minus:active {
+    background-color: #e4a5ab;
+  }
+
+/* ======================================== */
+/* 🎯 6. RATA KANAN KIRI UNTUK HALAMAN SARAN */
+/* ======================================== */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+
+
+
+
+
+.tersembunyi {
+  display: none;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================== -->
+  <!-- 1. Halaman Overlay Absen -->
+  <!-- ========================== -->
+  <div id="absensiOverlay" style="
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, #300000, #b00020);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    font-family: 'Poppins', sans-serif;
+  ">
+    <!-- Judul halaman absen -->
+    <h1 class="judul-jimpitan">Jimpitan Digital</h1>
+
+    <!-- Logo besar di halaman absen -->
+    <img src="logo.png" alt="Logo Besar" style="width: 100px; margin-bottom: 30px;" />
+
+    <!-- Subjudul -->
+    <h2 style="margin-bottom: 20px; font-size: 18px; font-weight: 600;">Semangat Bertugas</h2>
+
+
+  <!-- Dropdown untuk memilih grup petugas -->
+  <select id="groupSelect" style="
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 12px 24px;
+  padding-right: 50px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 16px;
+  width: 70%;
+  background-color: white;
+  color: #333;
+  background-image: url('data:image/svg+xml;utf8,<svg fill=%23b00020 height=20 viewBox=\'0 0 24 24\' width=20 xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7 10l5 5 5-5z\'/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+">
+  <option value="">Grup Petugas</option>
+  <option value="GRUP 1">GRUP 1</option>
+  <option value="GRUP 2">GRUP 2</option>
+  <option value="GRUP 3">GRUP 3</option>
+  <option value="GRUP 4">GRUP 4</option>
+  <option value="GRUP 5">GRUP 5</option>
+  <option value="GRUP 6">GRUP 6</option>
+  <option value="GRUP 7">GRUP 7</option>
+  <option value="GRUP 8">GRUP 8</option>
+  <option value="BUKAN PETUGAS">BUKAN PETUGAS</option>
+</select>
+
+<!-- Dropdown Nama -->
+<select id="namaSelect" style="
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 12px 24px;
+  padding-right: 50px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 24px;
+  width: 70%;
+  background-color: white;
+  color: #333;
+  background-image: url('data:image/svg+xml;utf8,<svg fill=%23b00020 height=20 viewBox=\'0 0 24 24\' width=20 xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7 10l5 5 5-5z\'/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+">
+  <option value="">Nama Petugas</option>
+</select>
+
+
+
+<!-- Tombol untuk reset semua data dari tampilan awal -->
+<p class="reset-link" onclick="handleResetFromAbsen()">🔒 Reset Semua Data</p>
+
+<style>
+  .reset-link {
+    margin-bottom: 10px;
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    transition: color 0.2s;
+  }
+
+  .reset-link:hover {
+    color: #ffcccc; /* warna putih kemerahan saat hover */
+  }
+
+  .reset-link:active {
+    color: #ff6666; /* warna merah saat diklik */
+  }
+</style>
+
+<!-- Catatan kecil untuk reset awal -->
+<p class="peringatan-reset">Reset data dulu sebelum masuk</p>
+
+<style>
+  .peringatan-reset {
+    font-size: 9px;
+    color: #ffb700; /* putih agak transparan */
+    text-align: center;
+    margin-top: 2px;
+    margin-bottom: 12px;
+  }
+</style>
+
+  <!-- Tombol untuk masuk ke aplikasi -->
+  <button id="btnMasuk" onclick="masukApp()" class="btn-masuk" disabled>
+    MASUK
+  </button>
+
+
+  <!-- Versi Aplikasi -->
+<p class="versi-aplikasi">Aplikasi Jimpitan RT9 RW7 v1.0</p>
+
+<style>
+  .versi-aplikasi {
+    font-size: 8px;
+    color: #e1b7b7;
+    margin-top: 16px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+</style>
+
+
+</div>
+
+
+  <!-- ======================= -->
+  <!-- 2. Spinner & Toast -->
+  <!-- ======================= -->
+
+  <!-- Spinner ketika sedang mengirim ke server -->
+  <div id="spinner" style="
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  ">
+  <div style="
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  ">
+    <!-- Loading indicator berbentuk lingkaran -->
+    <div class="loader" style="
+      width: 40px;
+      height: 40px;
+      border: 5px solid #ccc;
+      border-top: 5px solid #b00020;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    "></div>
+    <span style="color:#333; font-weight:600;">📤 Mengirim data ke server...</span>
+  </div>
+</div>
+
+  <!-- Toast notifikasi sukses kirim -->
+  <div id="toast" style="
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #323232;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    display: none;
+    z-index: 999999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    animation: fadein 0.3s, fadeout 0.3s 2.7s;
+  ">
+    ✅ Data terkirim
+  </div>
+ 
+  <!-- ================================ -->
+  <!-- HTML HEADER APLIKASI             -->
+  <!-- ================================ -->
+  <header>
+    <img src="logo.png" alt="Logo" />
+    Jimpitan RT 9 RW 7
+  </header>
+
+  <!-- ================================ -->
+  <!-- HTML NAVIGASI TAB MENU           -->
+  <!-- ================================ -->
+  <div class="tab-wrapper" style="margin-bottom: 4px;">
+    <div class="tab-menu" style="margin-bottom: 4px;">
+      <button class="tab-button active" onclick="switchTab('inputTab', this)">Input</button>
+      <button class="tab-button" onclick="switchTab('tabelTab', this)">Tabel</button>
+      <button class="tab-button" onclick="switchTab('rekapTab', this)">Riwayat</button>
+    </div>
+  </div>
+
+<!-- ================================ -->
+<!-- 2. TOMBOL SARAN MELAYANG (💡) -->
+<!-- ================================ -->
+<button onclick="bukaHalamanSaran()" id="btnSaranFloat" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #b00020;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  display: none;
+">💡</button>
+
+<!-- ================================ -->
+<!-- 3. HALAMAN SARAN (Hanya 1x!) -->
+<!-- ================================ -->
+<div class="container"></div>
+  <div id="saranPage" style="display: none; padding: 20px; margin: 16px;">
+    <h2>Saran & Masukan</h2>
+
+    <input type="text" id="saranNama" placeholder="Nama Anda (opsional)" style="
+      display: block;
+      width: 100%;
+      max-width: 85vw;
+      margin: 0 auto 16px;
+      padding: 10px 16px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    ">
+
+    <textarea id="saranPesan" placeholder="Tulis saran atau masukan..." rows="6" style="
+      display: block;
+      width: 100%;
+      max-width: 85vw;
+      margin: 0 auto 16px;
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      resize: vertical;
+    "></textarea>
+
+    <div style="text-align: center;">
+      <button onclick="kirimSaran()" style="
+        margin: 12px 6px;
+        background: #b00020;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+      ">Kirim</button>
+
+      <button onclick="tutupHalamanSaran()" style="
+        margin: 12px 6px;
+        padding: 15px 20px;
+        border-radius: 8px;
+        border: 1px solid #aaa;
+        background: #f2f2f2;
+        cursor: pointer;
+      ">Kembali</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- TOAST -->
+<div id="toast" style="
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4CAF50;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+"></div>
+
+
+<!-- ============================== -->
+<!-- HTML TAB INPUT JIMPITAN       -->
+<!-- ============================== -->
+<div class="tab-content active" id="inputTab">
+
+    <!-- Hasil pencarian -->
+  <div id="hasilPencarian" style="
+    margin-top: 0px;
+    margin-bottom: 16px; /* Tambahan jarak bawah */
+    padding: 10px;
+    border-radius: 8px;
+    background: #f8f8f8;
+    font-weight: bold;
+    text-align: center;">
+    🔍 Sedang mencari...
+  </div>
+
+  <!-- Input pencarian -->
+  <input type="text" id="cariNama" placeholder="Ketik nama warga..."
+    style="width: 100%; padding: 12px; font-size: 18px; margin-bottom: 16px; border-radius: 8px; border: 1px solid #ccc;" />
+  
+
+  <!-- Kontrol jumlah -->
+  <div style="position: relative; margin: 20px 0; height: 60px;">
+    <!-- Tombol - kiri -->
+    <button class="btn-minus" onclick="ubahJumlah(-1)">−</button>
+
+  <!-- Kolom nominal di tengah -->
+  <div id="nilaiJumlah" style="
+    margin: 0 auto;
+    width: 120px;
+    height: 60px;
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: white;
+  ">0</div>
+
+  <!-- Tombol + kanan -->
+  <button class="btn-plus" onclick="ubahJumlah(1)">+</button>
+</div>
+
+    <!-- Tombol Tambah -->
+  <button class="btn-tambah" onclick="tambahData()">Tambah</button>
+
+  <!-- Nama Petugas -->
+  <input type="text" id="petugas" placeholder="Nama Petugas" readonly
+    style="font-weight: bold; background-color: #f2f2f2; color: #444; width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;" />
+  <small style="display:block; margin-top: -10px; margin-bottom: 16px; font-size: 12px; color: #777;">
+    *Petugas yang input jimpitan hari ini.
+  </small>
+
+
+  <!-- Tanggal -->
+  <input type="date" id="tanggal"
+    style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;" />
+  <small style="display:block; margin-top: -10px; margin-bottom: 24px; font-size: 12px; color: #777;">
+    Jangan diubah, sudah sesuai jadwal.
+  </small>
+  </div> <!-- Tutup inputTab -->
+
+<!-- ============================== -->
+<!-- TAB: TABEL JIMPITAN -->
+<!-- ============================== -->
+<div class="tab-content" id="tabelTab">
+
+  <!-- Filter Nama -->
+  <input
+    type="text"
+    id="filterNama"
+    placeholder="Cari nama..."
+    oninput="tampilkanData()"
+    style="margin-bottom: 16px; padding: 10px; width: 100%; font-size: 18px; border: 1px solid #ccc; border-radius: 6px;"
+  />
+
+  <!-- Tabel Data -->
+<div style="overflow-x: auto;">
+  <table border="1" width="100%" style="border-collapse: collapse; text-align: left;">
+    <thead style="background-color: #f0f0f0;">
+      <tr>
+        <th style="padding: 8px; width: 60%;">Nama Lengkap</th>
+        <th style="padding: 8px; width: 20%;">Jumlah</th>
+        <th style="padding: 8px; width: 20%;">Edit</th>
+      </tr>
+    </thead>
+
+    <tbody id="tabelData">
+      <!-- Diisi lewat JavaScript -->
+    </tbody>
+  </table>
+</div>
+
+  
+</div>
+
+
+<!-- ============================== -->
+<!-- HTML TAB RIWAYAT JIMPITAN   -->
+<!-- ============================== -->
+
+<div class="tab-content" id="rekapTab">
+  <div class="btn-group" style="margin-bottom: 10px;">
+    <button class="btn-kirim" onclick="simpanKeGoogleSheets()">📤 Kirim ke Server</button>
+  </div>
+
+
+<style>
+  .btn-kirim {
+    background-color: #28a745;  /* Hijau sukses */
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-kirim:hover {
+    background-color: #218838; /* Hijau lebih gelap saat hover */
+  }
+
+  .btn-kirim:active {
+    background-color: #1e7e34;
+  }
+</style>
+
+
+<!-- Hanya muncul saat screenshot -->
+<div id="headerScreenshotOnly" style="display: none; text-align: center; margin-bottom: 20px; font-size: 20px; font-weight: bold; color: #25D366;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" style="vertical-align: middle; margin-right: 8px;">
+    <path fill="#25D366" d="M16 2.933A13.067 13.067 0 0 0 5.733 24.4L4 30l5.733-1.733A13.067 13.067 0 1 0 16 2.933zm0 23.467a10.4 10.4 0 0 1-5.333-1.467l-.4-.267-3.2.933.933-3.2-.267-.4A10.667 10.667 0 1 1 16 26.4zm5.867-7.867c-.267-.133-1.6-.8-1.867-.933s-.4-.133-.667.133c-.267.267-.8.933-.933 1.2-.133.267-.4.267-.667.133s-1.333-.4-2.533-1.6c-.933-.933-1.6-2-1.867-2.4s0-.533.133-.667c.133-.133.267-.4.4-.667.133-.267.133-.4 0-.667s-.667-1.6-.933-2.267c-.267-.667-.533-.6-.667-.6H10c-.267 0-.533.133-.667.267s-.8.8-.8 1.867.8 2.133.933 2.267c.133.267 1.6 3.2 4 4.4 2.8 1.6 2.8 1.067 3.333 1.067s1.6-.133 2.267-.933c.667-.8.933-1.6.933-1.867 0-.267 0-.4-.133-.4z"/>
+  </svg>
+  Bagikan ke WhatsApp Group
+  <div style="font-size: 16px; color: #333; font-weight: normal; margin-top: 4px;">
+    Paguyuban RT 09 RW 07
+  </div>
+</div>
+
+    <!-- Riwayat Jimpitan -->
+  <h3>Riwayat Jimpitan</h3>
+  <div class="rekap-harian" id="rekapHari"></div>
+
+  <!-- Tidak Mengisi Jimpitan -->
+  <h3 style="margin-top: 30px;">Tidak Mengisi Jimpitan</h3>
+  <div class="rekap-grid" id="rekapTidakIsi"></div>
+
+  <!-- Sudah dikunjungi -->
+  <h3 class="tersembunyi" style="margin-top: 30px;">Sudah Dikunjungi</h3>
+  <div class="rekap-grid tersembunyi" id="rekapSudah"></div>
+
+  
+  <!-- Belum dikunjungi -->
+  <h3 style="margin-top: 30px;">Belum Dikunjungi</h3>
+  <div class="rekap-grid" id="rekapWarga"></div>
+
+  <!-- Tombol Ekspor dan Kembali -->
+  <button id="btnCapture" onclick="captureRiwayat()" style="margin-top: 20px;">
+    📸 Download Riwayat (PNG)
+  </button>
+  <button onclick="keluarAplikasi()" style="margin-top: 20px; background:#b00020; color:white;">
+    🔄 Keluar dan reset data ⚠️
+  </button>
+</div>
+
+
+
+<script>
+
+// Daftar warga harus global agar tampilkanRiwayat() bisa membacanya
+const daftarWarga = [
+  "ADI MBAH PITA", "AGUNG TRIARSO", "AGUS PURBOYONO", "AGUS SUHERMAN", "AHMAD JAUHARUL FARID",
+  "ALI FATAH", "ALI IMRON", "AMIN SETYONO", "ARIS SAMITIO", "BENNY", "BUDI BAGUS SANTOSO",
+  "DASUKI", "FAIZIN", "GIANTO ZAINI", "HARNO", "HARTOPO", "JOKO MBAK YANA", "KOZIN", "KUSNADI",
+  "MARIYO", "MOCH ALY MAS AD", "MUHAMMAD AGUS", "NGALI", "NUR AZIS", "NUR KHOLISH",
+  "PAULUS IRAWAN", "PURWANTO", "RAGIL SANTOSO", "REZA", "RISTANTO ARIS SAPUTRO",
+  "RIZKI AGUNG UTOMO", "ROS HARMANTO", "SARJO", "SLAMET", "SLAMET UTOMO", "SOLEKAN",
+  "SUBCHAN", "SUGIONO", "SUGIYANTO", "SUJONO", "SUPRIYADI", "SUPRIYANTO", "SUWITO",
+  "SUYANTONO", "UMAR SADLI", "WIDODO", "YUSUF LUKMAN HAKIM", "YOGA", "YOLANDA"
+];
+
+// ===========================
+// ABSENSI OVERLAY & RESET
+// ===========================
+
+function handleResetFromAbsen() {
+  const konfirmasi = prompt("Ketik 'RESET SEMUA' untuk konfirmasi:");
+
+  const tombol = document.getElementById("btnMasuk");
+
+  if (konfirmasi === "RESET SEMUA") {
+    // Kosongkan data (jika pakai array data)
+    localStorage.clear(); // Bersihkan semua data sebelumnya
+    alert("✅ Semua data berhasil direset, silahkan masuk.");
+
+    // Tandai sudah reset
+    localStorage.setItem("sudahReset", "true");
+
+    // Aktifkan tombol masuk
+    tombol.disabled = false;
+    tombol.classList.add("glow");
+    tombol.textContent = "MASUK";
+  } else {
+    alert("❌ Reset dibatalkan.");
+    tombol.disabled = true;
+    tombol.classList.remove("glow");
+  }
+}
+
+function masukApp() {
+  const grup = document.getElementById("groupSelect").value;
+  const nama = document.getElementById("namaSelect").value;
+  const sudahReset = localStorage.getItem("sudahReset");
+
+  if (sudahReset !== "true") {
+    alert("🔒 Reset data dulu sebelum masuk");
+    return;
+  }
+
+  if (!grup || !nama) return alert("Harap pilih grup dan nama terlebih dahulu!");
+
+  // Simpan absen
+  localStorage.setItem("absensiNama", nama);
+  localStorage.setItem("absensiGroup", grup);
+  localStorage.setItem("absensiTerakhir", Date.now());
+
+  // Isi input petugas
+  document.getElementById("petugas").value = nama;
+
+  // Sembunyikan overlay absensi
+  document.getElementById("absensiOverlay").style.display = "none";
+}
+
+// Saat halaman dimuat
+document.addEventListener("DOMContentLoaded", function () {
+  const now = Date.now();
+  const lastAbsensi = localStorage.getItem("absensiTerakhir");
+  const sudahReset = localStorage.getItem("sudahReset");
+  const tombol = document.getElementById("btnMasuk");
+
+  // Cek apakah absen terakhir kurang dari 5 jam lalu dan sudah reset
+  if (lastAbsensi && now - parseInt(lastAbsensi) < 5 * 60 * 60 * 1000 && sudahReset === "true") {
+    document.getElementById("absensiOverlay").style.display = "none";
+    const petugas = localStorage.getItem("absensiNama");
+    if (petugas) document.getElementById("petugas").value = petugas;
+  } else {
+    tombol.disabled = true;
+    tombol.classList.remove("glow");
+  }
+});
+
+
+  // ===========================
+  // JS DROPDOWN GRUP & NAMA PETUGAS
+  // ===========================
+
+
+// ===========================
+// INISIALISASI DATA WARGA
+// ===========================
+
+
+// ===========================
+// KONTROL JUMLAH
+// ===========================
+function ubahJumlah(delta) {
+  jumlah += delta * 500;
+  if (jumlah < 0) jumlah = 0;
+  if (jumlah > 200000) jumlah = 200000;
+  document.getElementById("nilaiJumlah").textContent = jumlah.toLocaleString("id-ID");
+}
+
+// ===========================
+// TAMBAH DATA JIMPITAN
+// ===========================
+function tambahData() {
+  const nama = namaTerpilih;
+  const tanggal = document.getElementById("tanggal").value;
+  const petugas = document.getElementById("petugas")?.value || "-";
+  const nilaiJumlah = jumlah;
+
+  if (!nama) return alert("⚠️ Nama belum dipilih.");
+  if (nilaiJumlah < 0) return alert("⚠️ Jumlah tidak boleh negatif.");
+
+  const index = data.findIndex(item => item.nama === nama && item.tanggal === tanggal);
+
+  if (index !== -1) {
+    data[index].jumlah = nilaiJumlah;
+    data[index].petugas = petugas;
+    alert(`🔁 Data untuk ${nama} diperbarui menjadi Rp${nilaiJumlah.toLocaleString("id-ID")}`);
+  } else {
+    data.push({ nama, tanggal, jumlah: nilaiJumlah, petugas });
+    alert(`✅ Data ditambahkan:\nNama: ${nama}\nJumlah: Rp${nilaiJumlah.toLocaleString("id-ID")}`);
+  }
+
+  // Simpan ke localStorage
+  localStorage.setItem("jimpitanData", JSON.stringify(data));
+
+  // ✅ Reset input jumlah
+  jumlah = 0;
+  document.getElementById("nilaiJumlah").textContent = "0";
+
+  // ✅ Reset pencarian nama
+  const inputCari = document.getElementById("cariNama");
+  const hasilDiv = document.getElementById("hasilPencarian");
+  if (inputCari && hasilDiv) {
+    inputCari.value = "";
+    hasilDiv.textContent = "🔍 Sedang mencari...";
+    hasilDiv.style.backgroundColor = "#f8f8f8";
+  }
+
+  // ✅ Reset nama dropdown (jika ada)
+  const namaSelect = document.getElementById("namaSelect");
+  if (namaSelect) namaSelect.selectedIndex = 0;
+
+  namaTerpilih = "";
+
+  // Refresh tabel
+  tampilkanData();
+  tampilkanRiwayat();
+}
+
+
+// ===========================
+// HANDLE PENCARIAN NAMA
+// ===========================
+
+
+
+
+
+// ===========================
+// SAAT HALAMAN DIBUKA HALAMAN TABEL
+// ===========================
+document.addEventListener("DOMContentLoaded", function () {
+  const inputTanggal = document.getElementById("tanggal");
+  if (inputTanggal) inputTanggal.valueAsDate = new Date();
+
+  // Aktifkan tab input
+  document.getElementById("inputTab")?.classList.add("active");
+  document.querySelector('[onclick="bukaTab(\'inputTab\')"]')?.classList.add("active");
+
+  tampilkanData();
+  tampilkanRiwayat();
+});
+
+
+
+// ===========================
+// TAMPILKAN DATA DI HALAMAN TABEL
+// ===========================
+function tampilkanData() {
+  const tbody = document.getElementById("tabelData");
+  const filterInput = document.getElementById("filterNama");
+  const filter = filterInput ? filterInput.value.toLowerCase() : "";
+  const today = new Date().toISOString().split('T')[0];
+  let totalHari = 0;
+
+  if (!tbody) return;
+  tbody.innerHTML = "";
+
+  // Filter data lalu gunakan map agar dapat indexAsli
+  data
+    .map((item, indexAsli) => ({ ...item, indexAsli }))
+    .filter(item => item.tanggal === today && item.nama.toLowerCase().includes(filter))
+    .forEach((item) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td style="padding: 8px; text-align: left;">${item.nama}</td>
+        <td style="padding: 8px; text-align: center;">${item.jumlah.toLocaleString("id-ID")}</td>
+        <td style="padding: 8px;">
+          <div class="edit-buttons-vertical">
+            <button class="btn-edit-plus" onclick="ubahJumlahLangsung(${item.indexAsli}, 500)">+</button>
+            <button class="btn-edit-minus" onclick="ubahJumlahLangsung(${item.indexAsli}, -500)">−</button>
+          </div>
+        </td>
+      `;
+      tbody.appendChild(tr);
+      totalHari += item.jumlah;
+    });
+
+  const ket = document.getElementById("keteranganTanggal");
+  if (ket) {
+    ket.innerHTML = `
+      <span style="float:left;"><b>${today}</b></span>
+      <span><b>Total: ${totalHari.toLocaleString("id-ID")}</b></span>
+    `;
+  }
+}
+
+
+function ubahJumlahLangsung(index, delta) {
+  data[index].jumlah += delta;
+  if (data[index].jumlah < 0) data[index].jumlah = 0;
+  localStorage.setItem("jimpitanData", JSON.stringify(data));
+  tampilkanData();
+  tampilkanRiwayat();
+}
+
+
+
+// ===========================
+// HALAMAN RIWAYAT
+// ===========================
+function tampilkanRiwayat() {
+  if (!Array.isArray(data)) return;
+
+  const hari = {};
+  data.forEach(({ tanggal, jumlah }) => {
+    hari[tanggal] = (hari[tanggal] || 0) + jumlah;
+  });
+
+  const rekapHari = document.getElementById("rekapHari");
+  if (rekapHari) {
+    const isi = Object.entries(hari)
+      .sort()
+      .map(([tgl, total]) => `
+        <div class="rekap-item">
+          <span class="nama">${tgl}</span>
+          <span class="nominal">${total.toLocaleString("id-ID")}</span>
+        </div>
+      `).join('');
+
+    rekapHari.innerHTML = isi || "<i>Belum ada data</i>";
+  }
+
+  const today = new Date().toISOString().split('T')[0];
+  const dataHariIni = data.filter(d => d.tanggal === today);
+
+  const namaSudah = new Set(dataHariIni.map(d => d.nama));
+  const namaTidakIsi = new Set(dataHariIni.filter(d => d.jumlah === 0).map(d => d.nama));
+  const namaIsi = new Set(dataHariIni.filter(d => d.jumlah > 0).map(d => d.nama));
+  const namaSemua = new Set(daftarWarga); // pastikan daftarWarga tersedia global
+  const namaBelum = [...namaSemua].filter(nama => !namaSudah.has(nama));
+
+  // 🔴 TIDAK ISI
+  const divTidakIsi = document.getElementById("rekapTidakIsi");
+  if (divTidakIsi) {
+    divTidakIsi.innerHTML =
+      [...namaTidakIsi].map(nama => `
+        <div class="rekap-item">
+          <span class="nama">${nama}</span>
+          <span class="nominal">0</span>
+        </div>
+      `).join('') || "<i>Tidak ada yang belum mengisi jimpitan</i>";
+  }
+
+  // ✅ SUDAH ISI (atau jumlah = 0)
+  const divSudah = document.getElementById("rekapSudah");
+  if (divSudah) {
+    divSudah.innerHTML =
+      [...namaSudah].map(nama => {
+        const item = dataHariIni.find(d => d.nama === nama);
+        const nominal = item?.jumlah ?? 0;
+        return `
+          <div class="rekap-item">
+            <span class="nama">${nama}</span>
+            <span class="nominal">${nominal.toLocaleString("id-ID")}</span>
+          </div>
+        `;
+      }).join('') || "<i>Belum ada kunjungan</i>";
+  }
+
+  // ❌ BELUM DIKUNJUNGI
+  const divBelum = document.getElementById("rekapWarga");
+  if (divBelum) {
+    divBelum.innerHTML =
+      namaBelum.map(nama => `
+        <div class="rekap-item">
+          <span class="nama">${nama}</span>
+          <span class="nominal">-</span>
+        </div>
+      `).join('') || "<i>Semua warga sudah dikunjungi</i>";
+  }
+}
+
+// ===========================
+// 7. EKSPOR, BACKUP, KIRIM SERVER
+// ===========================
+function simpanKeGoogleSheets() {
+  if (data.length === 0) return alert("Tidak ada data untuk disimpan.");
+  if (!confirm("Yakin ingin mengirim data ke server? ⚠️ Cek daftar Belum Dikunjungi.")) return;
+
+  const timestamp = new Date().toISOString();
+  const dataDenganWaktu = data.map(item => ({
+    ...item,
+    timestamp: timestamp
+  }));
+
+  // Tampilkan spinner keren
+  const spinner = document.getElementById("spinner");
+  spinner.style.display = "flex";
+
+  fetch('https://script.google.com/macros/s/AKfycbzlL1aaOSDh_Zr1_pIAH98knlv19HZxq8KXdFgwabuUHtESpCy5excYN5GUsGZPgChx/exec', {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(dataDenganWaktu),
+    redirect: 'follow'
+  })
+
+  .then(res => res.text())
+  .then(txt => {
+    spinner.style.display = "none"; // sembunyikan dulu
+    showToast("✅ Data terkirim"); // tampilkan toast
+  })
+  .catch(err => {
+    spinner.style.display = "none";
+    showToast("❌ Gagal: " + err.message); // tampilkan error juga sebagai toast
+  });
+}
+
+// ===========================
+// 8. TOAST & SCREENSHOT
+// ===========================
+// Sceenshoot halaman
+function showToast(pesan = "✅ Data terkirim", harusScreenshot = false) {
+  const toast = document.getElementById("toast");
+  toast.textContent = pesan;
+  toast.style.display = "block";
+
+  // Tunggu sedikit agar toast terlihat, lalu screenshot seluruh halaman
+  if (harusScreenshot) {
+  setTimeout(() => {
+    simpanScreenshotHalaman();
+  }, 100); // 100ms setelah toast muncul
+}
+
+  // Sembunyikan toast setelah 2 detik
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 2000);
+}
+
+// Fungsi untuk screenshoot halaman saat notifikasi mengirim data berhasil
+function simpanScreenshotHalaman() {
+  html2canvas(document.body).then(canvas => {
+    const link = document.createElement("a");
+    link.download = `jimpitan_${Date.now()}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click(); // langsung simpan ke Downloads
+  });
+}
+
+  // ===========================
+  // CAPTURE RIWAYAT
+  // ===========================
+function captureRiwayat() {
+  const button = document.getElementById("btnCapture");
+  const headerScreenshot = document.getElementById("headerScreenshotOnly");
+  const rekapTab = document.getElementById("rekapTab");
+
+  button.style.display = "none";         // Sembunyikan tombol
+  headerScreenshot.style.display = "block"; // Tampilkan header WhatsApp
+
+  html2canvas(rekapTab, {
+    scrollY: -window.scrollY,
+    windowWidth: document.documentElement.scrollWidth,
+    windowHeight: document.documentElement.scrollHeight,
+  }).then(canvas => {
+    button.style.display = "block";         // Tampilkan kembali tombol
+    headerScreenshot.style.display = "none"; // Sembunyikan kembali header WhatsApp
+
+    const imgData = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = imgData;
+    link.download = "riwayat_jimpitan.png";
+    link.click();
+  });
+}
+
+function simpanScreenshotHalaman() {
+  const header = document.getElementById("headerScreenshotOnly");
+  const rekapTab = document.getElementById("rekapTab");
+
+  if (header) header.style.display = "block"; // Tampilkan sementara
+
+  html2canvas(rekapTab, {
+    scrollY: -window.scrollY,
+    windowWidth: document.documentElement.scrollWidth,
+    windowHeight: document.documentElement.scrollHeight,
+  }).then(canvas => {
+    if (header) header.style.display = "none"; // Sembunyikan kembali
+
+    const link = document.createElement("a");
+    link.download = `jimpitan_${Date.now()}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  });
+}
+
+
+
+  // ===========================
+  // KELUAR KE HALAMAN UTAMA & RESET DATA
+  // ===========================
+  function keluarAplikasi() {
+    if (!confirm("keluar dari aplikasi dan reset semua data?")) return;
+
+    // Hapus data dari localStorage
+    localStorage.removeItem("absensiNama");
+    localStorage.removeItem("absensiGroup");
+    localStorage.removeItem("absensiTerakhir");
+    localStorage.removeItem("sudahReset");
+    localStorage.removeItem("jimpitanData"); // 🔁 jangan lupa reset data jimpitan juga
+
+    // Reset variabel dan tampilan manual (biar terlihat langsung)
+    data = [];
+    tampilkanData();         // update tabel
+    tampilkanRiwayat();    // update riwayat
+    alert("✅ Data berhasil direset. Halaman akan dimuat ulang.");
+
+    // Reload halaman (agar absen overlay muncul lagi)
+    location.reload();
+  }
+
+
+  // ===========================
+  // 9. TOMBOL SARAN MELAYANG
+  // ===========================
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-menu button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+
+  // Tampilkan tombol 💡 hanya di tab Riwayat
+  const btnSaran = document.getElementById("btnSaranFloat");
+  btnSaran.style.display = (id === 'rekapTab') ? 'block' : 'none';
+}
+
+function bukaHalamanSaran() {
+  // Simpan tab yang sedang aktif
+  window.tabSebelumSaran = document.querySelector('.tab-content.active')?.id || 'inputTab';
+
+  // Sembunyikan semua tab
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+
+  // Sembunyikan tab-wrapper dan tombol saran
+  document.querySelector(".tab-wrapper").style.display = "none";
+  document.getElementById("btnSaranFloat").style.display = "none";
+
+  // Tampilkan halaman saran
+  document.getElementById("saranPage").style.display = "block";
+
+  // Kosongkan form
+  document.getElementById("saranNama").value = "";
+  document.getElementById("saranPesan").value = "";
+}
+
+
+function tutupHalamanSaran() {
+  document.getElementById("saranPage").style.display = "none";
+  document.querySelector(".tab-wrapper").style.display = "block";
+
+  const lastTabId = window.tabSebelumSaran || "inputTab";
+  switchTab(lastTabId, document.querySelector(`[onclick="switchTab('${lastTabId}', this)"]`));
+}
+
+// ----------------------------//
+// SPINNER KIRIM SARAN MASUKAN //
+// ----------------------------//
+function kirimSaran() {
+  const nama = document.getElementById("saranNama").value || "Anonim";
+  const pesan = document.getElementById("saranPesan").value.trim();
+
+  if (!pesan) {
+    alert("Tulis dulu sarannya, ya!");
+    document.getElementById("saranPesan").focus();
+    return;
+  }
+
+  const saranData = { nama, pesan };
+
+  // GANTI dengan URL Web Apps kamu
+  const urlSaran = 'https://script.google.com/macros/s/AKfycbwkW_qvbl0hrqY-2J0s85pyuFFQ9qx8vOXv-qrfQHWLAQSChlfLZN67NXPy4dtQZKP40A/exec';
+
+// 🔄 Tampilkan spinner
+  const spinner = document.getElementById("spinner");
+  spinner.style.display = "flex";
+
+  fetch(urlSaran, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'text/plain;charset=utf-8'
+    },
+    body: JSON.stringify(saranData)
+  })
+  .then(res => res.text())
+  .then(response => {
+    spinner.style.display = "none";
+    showToast("✅ Terima kasih!");
+
+    document.getElementById("saranNama").value = "";
+    document.getElementById("saranPesan").value = "";
+
+    tutupHalamanSaran();
+    switchTab(window.tabSebelumSaran, document.querySelector(`[onclick*="${window.tabSebelumSaran}"]`));
+  })
+  .catch(err => {
+    spinner.style.display = "none";
+    showToast("❌ Gagal mengirim. Coba lagi nanti.");
+    console.error(err);
+  });
+}
+
+
+//INPUT NAMA WARGA DI TABEL & ABSENSI
+  let namaTerpilih = "";
+  let jumlah = 0;
+  let data = JSON.parse(localStorage.getItem("jimpitanData")) || [];
+
+document.addEventListener("DOMContentLoaded", function () {
+  const daftarWarga = [
+    "ADI MBAH PITA", "AGUNG TRIARSO", "AGUS PURBOYONO", "AGUS SUHERMAN", "AHMAD JAUHARUL FARID",
+    "ALI FATAH", "ALI IMRON", "AMIN SETYONO", "ARIS SAMITIO", "BENNY", "BUDI BAGUS SANTOSO",
+    "DASUKI", "FAIZIN", "GIANTO ZAINI", "HARNO", "HARTOPO", "JOKO MBAK YANA", "KOZIN", "KUSNADI",
+    "MARIYO", "MOCH ALY MAS AD", "MUHAMMAD AGUS", "NGALI", "NUR AZIS", "NUR KHOLISH",
+    "PAULUS IRAWAN", "PURWANTO", "RAGIL SANTOSO", "REZA", "RISTANTO ARIS SAPUTRO",
+    "RIZKI AGUNG UTOMO", "ROS HARMANTO", "SARJO", "SLAMET", "SLAMET UTOMO", "SOLEKAN",
+    "SUBCHAN", "SUGIONO", "SUGIYANTO", "SUJONO", "SUPRIYADI", "SUPRIYANTO", "SUWITO",
+    "SUYANTONO", "UMAR SADLI", "WIDODO", "YUSUF LUKMAN HAKIM", "YOGA", "YOLANDA"
+  ];
+
+  const grupWarga = {
+    "GRUP 1": ["AGUS PURBOYONO", "AGUS SUHERMAN", "ALI IMRON", "BUDI BAGUS SANTOSO", "DASUKI", "SUBCHAN"],
+    "GRUP 2": ["AGUNG TRIARSO", "AHMAD JAUHARUL FARID", "ALI FATAH", "RISTANTO ARIS SAPUTRO", "UMAR SADLI", "WIDODO"],
+    "GRUP 3": ["MARIYO", "RAGIL SANTOSO", "RIZKI AGUNG UTOMO", "SUWITO", "SUYANTONO"],
+    "GRUP 4": ["AMIN SETYONO", "FAIZIN", "GIANTO ZAINI", "KOZIN", "SUGIYANTO", "YUSUF LUKMAN HAKIM"],
+    "GRUP 5": ["HARTOPO", "MUHAMMAD AGUS", "NUR AZIS", "NUR KHOLISH", "SLAMET UTOMO", "SUPRIYANTO"],
+    "GRUP 6": ["KUSNADI", "PAULUS IRAWAN", "ROS HARMANTO", "SARJO", "YOGA"], 
+    "GRUP 7": ["ARIS SAMITIO", "HARNO", "PURWANTO", "SOLEKAN", "SUJONO"],
+    "GRUP 8": ["BENNY", "JOKO MBAK YANA", "MOCH ALY MAS AD", "NGALI", "SLAMET", "SUPRIYADI"], 
+    "BUKAN PETUGAS": ["BUKAN PETUGAS"],
+  };
+
+  const inputCari = document.getElementById("cariNama");
+  const hasilDiv = document.getElementById("hasilPencarian");
+
+  // ========== HANDLE DROPDOWN GRUP ==========
+  const groupSelect = document.getElementById("groupSelect");
+  const namaSelect = document.getElementById("namaSelect");
+
+  // Event listener grup & nama dropdown
+  groupSelect.addEventListener("change", function () {
+    const selectedGroup = this.value;
+    namaSelect.innerHTML = '<option value="">Nama Petugas</option>';
+
+    if (grupWarga[selectedGroup]) {
+      grupWarga[selectedGroup].forEach(nama => {
+        const option = document.createElement("option");
+        option.value = nama;
+        option.textContent = nama;
+        namaSelect.appendChild(option);
+      });
+    }
+  });
+
+    // ✅ Tambahkan ini: update namaTerpilih saat dropdown berubah
+  namaSelect.addEventListener("change", function () {
+    namaTerpilih = this.value;
+  });
+
+  // ========== HANDLE PENCARIAN ==========
+  inputCari.addEventListener("input", function () {
+    const keyword = this.value.trim().toLowerCase();
+
+    if (keyword === "") {
+      hasilDiv.innerHTML = "🔍 Sedang mencari...";
+      hasilDiv.style.backgroundColor = "#f8f8f8";
+      namaTerpilih = "";
+      return;
+    }
+
+    const cocok = daftarWarga.find(nama => nama.toLowerCase().includes(keyword));
+    if (cocok) {
+      hasilDiv.textContent = cocok;
+      hasilDiv.style.backgroundColor = "#d0ebff"; // Biru muda
+      namaTerpilih = cocok;
+    } else {
+      hasilDiv.innerHTML = "❌ Nama tidak ditemukan";
+      hasilDiv.style.backgroundColor = "#ffe6e6"; // Merah muda
+      namaTerpilih = "";
+    }
+  });
+});
+
+
+  </script>
+</body>
+</html>
