@@ -25,6 +25,9 @@
       font-family: 'Poppins', sans-serif;
     }
 
+
+/* CSS */
+
 /* ============================== */
 /* 1. TOMBOL MASUK & VARIASI */
 /* ============================== */
@@ -160,6 +163,159 @@ header img { height: 40px; }
   padding: 0;
   max-width: 800px;
   margin: auto;
+}
+
+/* ============================== */
+/* CSS BARU HANDLE SLIDE DI BAWAH         */
+/* ============================== */
+#absenHandle {
+  position: fixed;
+  bottom: 0;
+  left: 20px;       /* Sama seperti padding kiri header */
+  right: 20px;      /* Sama seperti padding kanan header */
+  height: 50px;
+  background: rgba(185, 185, 185, 0.719);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1002;
+  cursor: pointer;
+  font-size: 12px;
+  color: #444;
+  font-weight: 500;
+  border-top: 1px solid #ccc;
+  border-top-left-radius: 16px;   /* Samakan dengan header/tabs */
+  border-top-right-radius: 16px;
+}
+
+/* Garis biru atas & bawah teks */
+#absenHandle .line {
+  width: 40px;
+  height: 2px;  /* ← kamu tadi lupa isi height-nya */
+  background-color: #514e4e;
+  border-radius: 2px;
+  margin: 2px 0;
+}
+
+#absenHandle span {
+  margin: 4px 0;
+}
+
+
+/* ============================== */
+/* PANEL SLIDE ABSENSI PETUGAS   */
+/* ============================== */
+.absen-slide {
+  position: fixed;
+  bottom: -100%;
+  left: 20px;
+  right: 20px;
+  background: white;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.3);
+  padding: 16px;
+  transition: bottom 0.4s ease;
+  z-index: 1000;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+  max-height: calc(100vh - 120px); /* sisakan tinggi header + tab menu */
+  overflow-y: auto;
+}
+
+/* Saat panel tampil */
+.absen-slide.show {
+  bottom: 55px; /* Sama seperti height: 50px di #absenHandle */
+}
+
+/* ============================== */
+/* DAFTAR PETUGAS (1 kolom × 6)  */
+/* ============================== */
+.absen-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* Item petugas */
+.absen-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f4f4f4;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* ============================== */
+/* SWITCH ON / OFF               */
+/* ============================== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #e74c3c;
+  border-radius: 26px;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2ecc71;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* ============================== */
+/* TOMBOL KIRIM ABSENSI HIJAU    */
+/* ============================== */
+.absen-slide button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+  background: #2ecc71;
+  color: white;
+  font-weight: bold;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.absen-slide button:hover {
+  background: #27ae60;
 }
 
 
@@ -454,6 +610,59 @@ td.edit {
   }
 
 /* ======================================== */
+/* CSS RIWAYAT JIMPITAN */
+/* ======================================== */
+.data-row {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 4px; /* ← diperkecil dari 12px */
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nominal-total {
+  background-color: #eaeaea;
+  font-family: 'Poppins', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-align: center;
+  padding: 1.2rem;
+  border-radius: 15px;
+  margin: 12px 0; /* ← diperkecil dari 24px */
+}
+
+#petugasSelect {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: bold;
+  color: #333;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-top: 4px;     /* ← tambahkan sedikit saja */
+  margin-bottom: 2px;  /* ← hampir nempel */
+}
+
+#petugasSelect,
+#petugasSelect option {
+  font-style: normal !important;
+  font-weight: bold;
+  text-align: center; /* ✅ Tengah */
+}
+
+#petugasSelect option {
+  font-weight: bold;
+}
+
+
+
+
+
+
+/* ======================================== */
 /* 🎯 6. RATA KANAN KIRI UNTUK HALAMAN SARAN */
 /* ======================================== */
 .container {
@@ -478,7 +687,7 @@ td.edit {
 <body>
 
   <!-- ========================== -->
-  <!-- 1. Halaman Overlay Absen -->
+  <!-- 1 HTML Halaman Overlay Absen -->
   <!-- ========================== -->
   <div id="absensiOverlay" style="
     position: fixed;
@@ -614,6 +823,7 @@ td.edit {
 </style>
 
 
+
 </div>
 
 
@@ -683,6 +893,50 @@ td.edit {
   </header>
 
   <!-- ================================ -->
+  <!-- HTML TAB ABSENSI ON OFF          -->
+  <!-- ================================ -->
+
+<!-- Halaman absensi sebagai overlay -->
+<!-- Handle kecil di bawah layar -->
+<div id="absenHandle" onclick="toggleAbsensi()">
+  <div class="line"></div>
+  <span>Absensi Petugas</span>
+
+</div>
+
+
+
+<!-- Panel slide absensi -->
+<div id="absenPanel" class="absen-slide">
+  <h3>Absensi Petugas</h3>
+  <div id="absenGrid" class="absen-grid"></div>
+  <button onclick="kirimAbsensi()">Kirim Absensi</button>
+</div>
+
+<!-- ======================= -->
+<!-- Kirim Absensi Toast -->
+<!-- ======================= -->
+<div id="toast" style="
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4CAF50;
+  color: white;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  min-width: 220px;  /* ⬅️ Lebar minimal agar muat 1 baris di HP */
+  max-width: 90vw;   /* ⬅️ Agar tetap responsif di layar kecil */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+  display: none;
+"></div>
+
+
+
+  <!-- ================================ -->
   <!-- HTML NAVIGASI TAB MENU           -->
   <!-- ================================ -->
   <div class="tab-wrapper" style="margin-bottom: 4px;">
@@ -692,6 +946,7 @@ td.edit {
       <button class="tab-button" onclick="switchTab('rekapTab', this)">Riwayat</button>
     </div>
   </div>
+
 
 <!-- ================================ -->
 <!-- 2. TOMBOL SARAN MELAYANG (💡) -->
@@ -793,7 +1048,7 @@ td.edit {
     <!-- Hasil pencarian -->
   <div id="hasilPencarian" style="
     margin-top: 0px;
-    margin-bottom: 16px; /* Tambahan jarak bawah */
+    margin-bottom: 8px; /* Tambahan jarak bawah */
     padding: 10px;
     border-radius: 8px;
     background: #f8f8f8;
@@ -803,12 +1058,11 @@ td.edit {
   </div>
 
   <!-- Input pencarian -->
-  <input type="text" id="cariNama" placeholder="Ketik nama warga..."
-    style="width: 100%; padding: 12px; font-size: 18px; margin-bottom: 16px; border-radius: 8px; border: 1px solid #ccc;" />
-  
+  <input type="text" id="cariNama" placeholder="Ketik nama warga..." style="margin-bottom: 6px;" />
+
 
   <!-- Kontrol jumlah -->
-  <div style="position: relative; margin: 20px 0; height: 60px;">
+  <div style="position: relative; margin-top: 6px; margin-bottom: 12px; height: 60px;">
     <!-- Tombol - kiri -->
     <button class="btn-minus" onclick="ubahJumlah(-1)">−</button>
 
@@ -917,8 +1171,7 @@ td.edit {
   }
 </style>
 
-
-<!-- Hanya muncul saat screenshot -->
+<!-- Hanya muncul saat screenshot akan dihapus -->
 <div id="headerScreenshotOnly" style="display: none; text-align: center; margin-bottom: 20px; font-size: 20px; font-weight: bold; color: #25D366;">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" style="vertical-align: middle; margin-right: 8px;">
     <path fill="#25D366" d="M16 2.933A13.067 13.067 0 0 0 5.733 24.4L4 30l5.733-1.733A13.067 13.067 0 1 0 16 2.933zm0 23.467a10.4 10.4 0 0 1-5.333-1.467l-.4-.267-3.2.933.933-3.2-.267-.4A10.667 10.667 0 1 1 16 26.4zm5.867-7.867c-.267-.133-1.6-.8-1.867-.933s-.4-.133-.667.133c-.267.267-.8.933-.933 1.2-.133.267-.4.267-.667.133s-1.333-.4-2.533-1.6c-.933-.933-1.6-2-1.867-2.4s0-.533.133-.667c.133-.133.267-.4.4-.667.133-.267.133-.4 0-.667s-.667-1.6-.933-2.267c-.267-.667-.533-.6-.667-.6H10c-.267 0-.533.133-.667.267s-.8.8-.8 1.867.8 2.133.933 2.267c.133.267 1.6 3.2 4 4.4 2.8 1.6 2.8 1.067 3.333 1.067s1.6-.133 2.267-.933c.667-.8.933-1.6.933-1.867 0-.267 0-.4-.133-.4z"/>
@@ -928,10 +1181,29 @@ td.edit {
     Paguyuban RT 09 RW 07
   </div>
 </div>
+<!-- Hanya muncul saat screenshot akan dihapus --> 
 
-    <!-- Riwayat Jimpitan -->
-  <h3>Riwayat Jimpitan</h3>
-  <div class="rekap-harian" id="rekapHari"></div>
+
+
+
+<!-- HTML RIWAYAT JIMPITAN -->
+<!-- Riwayat Jimpitan -->
+<!-- HEADER RINGKASAN RIWAYAT -->
+<div class="data-row">
+  <div>Tanggal</div>
+  <div id="tanggalRiwayat">-</div>
+</div>
+<div class="data-row">
+  <div>Petugas Hadir</div>
+  <div id="jumlahPetugas">-</div>
+</div>
+<div class="nominal-total" id="totalNominal">Rp 0</div>
+
+<!-- Dropdown Petugas -->
+<select id="petugasSelect" style="font-style: italic;">
+  <option disabled selected>Yang bawa uang:</option>
+</select>
+
 
   <!-- Tidak Mengisi Jimpitan -->
   <h3 style="margin-top: 30px;">Tidak Mengisi Jimpitan</h3>
@@ -947,29 +1219,265 @@ td.edit {
   <div class="rekap-grid" id="rekapWarga"></div>
 
   <!-- Tombol Ekspor dan Kembali -->
-  <button id="btnCapture" onclick="captureRiwayat()" style="margin-top: 20px;">
-    📸 Download Riwayat (PNG)
-  </button>
   <button onclick="keluarAplikasi()" style="margin-top: 20px; background:#b00020; color:white;">
     🔄 Keluar dan reset data ⚠️
   </button>
+  
+  <button id="btnCapture" onclick="captureRiwayat()" style="margin-top: 20px;">
+    📸 Download Riwayat (PNG)
+  </button>
+
 </div>
 
 
 
 <script>
 
+// 1 Script
 // Daftar warga harus global agar tampilkanRiwayat() bisa membacanya
-const daftarWarga = [
-  "ADI MBAH PITA", "AGUNG TRIARSO", "AGUS PURBOYONO", "AGUS SUHERMAN", "AHMAD JAUHARUL FARID",
-  "ALI FATAH", "ALI IMRON", "AMIN SETYONO", "ARIS SAMITIO", "BENNY", "BUDI BAGUS SANTOSO",
-  "DASUKI", "FAIZIN", "GIANTO ZAINI", "HARNO", "HARTOPO", "JOKO MBAK YANA", "KOZIN", "KUSNADI",
-  "MARIYO", "MOCH ALY MAS AD", "MUHAMMAD AGUS", "NGALI", "NUR AZIS", "NUR KHOLISH",
-  "PAULUS IRAWAN", "PURWANTO", "RAGIL SANTOSO", "REZA", "RISTANTO ARIS SAPUTRO",
-  "RIZKI AGUNG UTOMO", "ROS HARMANTO", "SARJO", "SLAMET", "SLAMET UTOMO", "SOLEKAN",
-  "SUBCHAN", "SUGIONO", "SUGIYANTO", "SUJONO", "SUPRIYADI", "SUPRIYANTO", "SUWITO",
-  "SUYANTONO", "UMAR SADLI", "WIDODO", "YUSUF LUKMAN HAKIM", "YOGA", "YOLANDA"
-];
+  const daftarWarga = [
+    "ADI MBAH PITA", "AGUNG TRIARSO", "AGUS PURBOYONO", "AGUS SUHERMAN", "AHMAD JAUHARUL FARID",
+    "ALI FATAH", "ALI IMRON", "AMIN SETYONO", "ARIS SAMITIO", "BENNY", "BUDI BAGUS SANTOSO",
+    "DASUKI", "FAIZIN", "GIANTO ZAINI", "HARNO", "HARTOPO", "JOKO MBAK YANA", "KOZIN", "KUSNADI",
+    "MARIYO", "MOCH ALY MAS AD", "MUHAMMAD AGUS", "NGALI", "NUR AZIS", "NUR KHOLISH",
+    "PAULUS IRAWAN", "PURWANTO", "RAGIL SANTOSO", "REZA", "RISTANTO ARIS SAPUTRO",
+    "RIZKI AGUNG UTOMO", "ROS HARMANTO", "SARJO", "SLAMET", "SLAMET UTOMO", "SOLEKAN",
+    "SUBCHAN", "SUGIONO", "SUGIYANTO", "SUJONO", "SUPRIYADI", "SUPRIYANTO", "SUWITO",
+    "SUYANTONO", "UMAR SADLI", "WIDODO", "YUSUF LUKMAN HAKIM", "YOGA", "YOLANDA"
+  ];
+
+  const grupWarga = {
+    "GRUP 1": ["AGUS PURBOYONO", "AGUS SUHERMAN", "ALI IMRON", "BUDI BAGUS SANTOSO", "DASUKI", "SUBCHAN"],
+    "GRUP 2": ["AGUNG TRIARSO", "AHMAD JAUHARUL FARID", "ALI FATAH", "RISTANTO ARIS SAPUTRO", "UMAR SADLI", "WIDODO"],
+    "GRUP 3": ["MARIYO", "RAGIL SANTOSO", "RIZKI AGUNG UTOMO", "SUWITO", "SUYANTONO", "-"],
+    "GRUP 4": ["AMIN SETYONO", "FAIZIN", "GIANTO ZAINI", "KOZIN", "SUGIYANTO", "YUSUF LUKMAN HAKIM"],
+    "GRUP 5": ["HARTOPO", "MUHAMMAD AGUS", "NUR AZIS", "NUR KHOLISH", "SLAMET UTOMO", "SUPRIYANTO"],
+    "GRUP 6": ["KUSNADI", "PAULUS IRAWAN", "ROS HARMANTO", "SARJO", "YOGA", "-"], 
+    "GRUP 7": ["ARIS SAMITIO", "HARNO", "PURWANTO", "SOLEKAN", "SUJONO", "-"],
+    "GRUP 8": ["BENNY", "JOKO MBAK YANA", "MOCH ALY MAS AD", "NGALI", "SLAMET", "SUPRIYADI"], 
+    "BUKAN PETUGAS": ["BUKAN PETUGAS"],
+  };
+
+
+//INPUT NAMA WARGA DI TABEL & ABSENSI
+  let namaTerpilih = "";
+  let jumlah = 0;
+  let data = JSON.parse(localStorage.getItem("jimpitanData")) || [];
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  const inputCari = document.getElementById("cariNama");
+  const hasilDiv = document.getElementById("hasilPencarian");
+
+  // ========== HANDLE DROPDOWN GRUP ==========
+  const groupSelect = document.getElementById("groupSelect");
+  const namaSelect = document.getElementById("namaSelect");
+
+  // Event listener grup & nama dropdown
+  groupSelect.addEventListener("change", function () {
+    const selectedGroup = this.value;
+    namaSelect.innerHTML = '<option value="">Nama Petugas</option>';
+
+    if (grupWarga[selectedGroup]) {
+      grupWarga[selectedGroup].forEach(nama => {
+        const option = document.createElement("option");
+        option.value = nama;
+        option.textContent = nama;
+        namaSelect.appendChild(option);
+      });
+    }
+  });
+
+    // ✅ Tambahkan ini: update namaTerpilih saat dropdown berubah
+  namaSelect.addEventListener("change", function () {
+    namaTerpilih = this.value;
+  });
+
+  // ========== HANDLE PENCARIAN ==========
+  inputCari.addEventListener("input", function () {
+    const keyword = this.value.trim().toLowerCase();
+
+    if (keyword === "") {
+      hasilDiv.innerHTML = "🔍 Sedang mencari...";
+      hasilDiv.style.backgroundColor = "#f8f8f8";
+      namaTerpilih = "";
+      return;
+    }
+
+    const cocok = daftarWarga.find(nama => nama.toLowerCase().includes(keyword));
+    if (cocok) {
+      hasilDiv.textContent = cocok;
+      hasilDiv.style.backgroundColor = "#d0ebff"; // Biru muda
+      namaTerpilih = cocok;
+    } else {
+      hasilDiv.innerHTML = "❌ Nama tidak ditemukan";
+      hasilDiv.style.backgroundColor = "#ffe6e6"; // Merah muda
+      namaTerpilih = "";
+    }
+
+    const grupDipilih = document.getElementById("groupSelect").value;
+localStorage.setItem("grupTerpilih", grupDipilih);
+
+  });
+});
+
+// ===========================
+// DAFTAR ABSENSI BARU
+// ===========================
+
+// Event saat memilih grup & nama saat login
+document.getElementById("groupSelect").addEventListener("change", checkMasukReady);
+document.getElementById("namaSelect").addEventListener("change", checkMasukReady);
+
+function checkMasukReady() {
+  const grup = document.getElementById("groupSelect").value;
+  const nama = document.getElementById("namaSelect").value;
+  const tombol = document.getElementById("btnMasuk");
+  tombol.disabled = !(grup && nama);
+}
+
+// Ambil grup dari localStorage saat halaman dimuat
+let grupTerpilih = localStorage.getItem("grupTerpilih");
+if (!grupTerpilih || !grupWarga[grupTerpilih]) {
+  grupTerpilih = "BUKAN PETUGAS";
+}
+console.log("Grup terpilih dari localStorage:", grupTerpilih);
+
+// Endpoint Google Apps Script (PASTIKAN sudah di-deploy sebagai Web App, akses 'Anyone')
+const endpointAbsensi = "https://script.google.com/macros/s/AKfycbyapuLBQylQ-9ocSvHZWwusPjtrde0MkGdenqX3CkLx8UBea5NlZBL-LYZTY4khtI2j/exec";
+
+// Tampilkan/Sembunyikan panel absensi slide
+function toggleAbsensi() {
+  document.getElementById("absenPanel").classList.toggle("show");
+}
+
+// ✅ Tampilkan daftar nama petugas dari grup yang dipilih
+function tampilkanAbsensi() {
+  const namaPetugas = grupWarga[grupTerpilih] || [];
+  const grid = document.getElementById("absenGrid");
+  grid.innerHTML = "";
+
+  // Ambil status ON/OFF dari localStorage
+  const statusSimpan = JSON.parse(localStorage.getItem(`absenStatus_${grupTerpilih}`)) || {};
+
+  namaPetugas.forEach((nama, i) => {
+    const checked = statusSimpan[nama] ? "checked" : "";
+    grid.innerHTML += `
+      <div class="absen-item">
+        <span>${nama}</span>
+        <label class="switch">
+          <input type="checkbox" id="absen_${i}" ${checked} onchange="simpanStatusAbsensi()">
+          <span class="slider"></span>
+        </label>
+      </div>
+    `;
+  });
+}
+
+// Simpan status kehadiran ON/OFF ke localStorage
+function simpanStatusAbsensi() {
+  const namaPetugas = grupWarga[grupTerpilih] || [];
+  const status = {};
+
+  namaPetugas.forEach((nama, i) => {
+    const hadir = document.getElementById(`absen_${i}`).checked;
+    status[nama] = hadir;
+  });
+
+  localStorage.setItem(`absenStatus_${grupTerpilih}`, JSON.stringify(status));
+  console.log("Status disimpan:", status);
+
+  // ✅ Panggil ulang Riwayat
+  if (typeof tampilkanRiwayat === "function") {
+    tampilkanRiwayat();
+  }
+}
+
+// Kirim absensi ke Google Sheets via Apps Script
+function kirimAbsensi() {
+  const waktu = new Date().toLocaleString("id-ID");
+  const namaPetugas = grupWarga[grupTerpilih] || [];
+
+  const data = namaPetugas.map((nama, i) => {
+    const hadir = document.getElementById(`absen_${i}`).checked ? "Hadir" : "Tidak Hadir";
+    return {
+      waktu: waktu,
+      grup: grupTerpilih,
+      nama: nama,
+      status: hadir
+    };
+  });
+
+  // Simpan status ke localStorage
+  simpanStatusAbsensi();
+
+  // Tampilkan spinner jika ada
+  const spinner = document.getElementById("spinner");
+  if (spinner) spinner.style.display = "flex";
+
+  // Kirim pakai format seperti jimpitan
+  fetch("https://script.google.com/macros/s/AKfycbxw7BK3L5wnAiJTojjglZKR9GeFea1J9G9z4-TTk81XRkqA0Z_vN-aISnUH1CZUYy4m/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify(data),
+    redirect: 'follow'
+  })
+  // ⬇️ BAGIAN INILAH YANG KAMU TANYAKAN:
+  .then(msg => {
+    if (spinner) spinner.style.display = "none"; // ← sembunyikan spinner
+    showToast("✅ Absensi terkirim!");
+    toggleAbsensi(); // Menutup panel slide
+
+  // ✅ Update tampilan Riwayat setelah kirim absensi
+  if (typeof tampilkanRiwayat === "function") {
+    tampilkanRiwayat();
+  }
+
+  })
+  .catch(err => {
+    if (spinner) spinner.style.display = "none"; // ← sembunyikan spinner
+    console.error("❌ Gagal mengirim:", err);
+    showToast("❌ Gagal mengirim.");
+  });
+}
+
+// Saat halaman dimuat, tampilkan data absensi
+document.addEventListener("DOMContentLoaded", tampilkanAbsensi);
+
+
+
+function showToast(pesan) {
+  const toast = document.getElementById("toast");
+  toast.textContent = pesan;
+  toast.style.display = "block";
+  toast.style.opacity = "1";
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => toast.style.display = "none", 300);
+  }, 3000);
+}
+
+//END PENGECEKAN
+
+
+
+function simpanStatusAbsensi() {
+  const namaPetugas = grupWarga[grupTerpilih] || [];
+  const status = {};
+
+  namaPetugas.forEach((nama, i) => {
+    const hadir = document.getElementById(`absen_${i}`).checked;
+    status[nama] = hadir;
+  });
+
+  localStorage.setItem(`absenStatus_${grupTerpilih}`, JSON.stringify(status));
+}
+
+console.log("Status disimpan:", localStorage.getItem(`absenStatus_${grupTerpilih}`));
+
 
 // ===========================
 // ABSENSI OVERLAY & RESET
@@ -983,6 +1491,9 @@ function handleResetFromAbsen() {
   if (konfirmasi === "RESET SEMUA") {
     // Kosongkan data (jika pakai array data)
     localStorage.clear(); // Bersihkan semua data sebelumnya
+    
+    // 🔥 Hapus juga status absensi petugas yang tersimpan
+    localStorage.removeItem(`absenStatus_${localStorage.getItem("grupTerpilih")}`);
     alert("✅ Semua data berhasil direset, silahkan masuk.");
 
     // Tandai sudah reset
@@ -998,6 +1509,8 @@ function handleResetFromAbsen() {
     tombol.classList.remove("glow");
   }
 }
+
+
 
 function masukApp() {
   const grup = document.getElementById("groupSelect").value;
@@ -1016,11 +1529,16 @@ function masukApp() {
   localStorage.setItem("absensiGroup", grup);
   localStorage.setItem("absensiTerakhir", Date.now());
 
+  // 🔁 Ini penting untuk absensi slide:
+  localStorage.setItem("grupTerpilih", grup);
+  grupTerpilih = grup; // ← ini juga wajib untuk JS aktif saat ini
+
   // Isi input petugas
   document.getElementById("petugas").value = nama;
 
   // Sembunyikan overlay absensi
   document.getElementById("absensiOverlay").style.display = "none";
+  tampilkanAbsensi(); // ← penting!
 }
 
 // Saat halaman dimuat
@@ -1030,11 +1548,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const sudahReset = localStorage.getItem("sudahReset");
   const tombol = document.getElementById("btnMasuk");
 
-  // Cek apakah absen terakhir kurang dari 5 jam lalu dan sudah reset
+  const grup = localStorage.getItem("grupTerpilih");
+  const nama = localStorage.getItem("absensiNama");
+
   if (lastAbsensi && now - parseInt(lastAbsensi) < 5 * 60 * 60 * 1000 && sudahReset === "true") {
+    // Sembunyikan overlay login
     document.getElementById("absensiOverlay").style.display = "none";
-    const petugas = localStorage.getItem("absensiNama");
-    if (petugas) document.getElementById("petugas").value = petugas;
+
+    // Isi input nama petugas
+    if (nama) document.getElementById("petugas").value = nama;
+
+    // ✅ tampilkan ulang daftar absensi sesuai grup terakhir
+    if (grup && grupWarga[grup]) {
+      grupTerpilih = grup;  // Update variabel global
+      tampilkanAbsensi();
+    }
   } else {
     tombol.disabled = true;
     tombol.classList.remove("glow");
@@ -1042,14 +1570,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-  // ===========================
-  // JS DROPDOWN GRUP & NAMA PETUGAS
-  // ===========================
 
-
-// ===========================
-// INISIALISASI DATA WARGA
-// ===========================
 
 
 // ===========================
@@ -1192,11 +1713,53 @@ function ubahJumlahLangsung(index, delta) {
 
 
 // ===========================
-// HALAMAN RIWAYAT
+// JS RIWAYAT JIMPITAN
 // ===========================
 function tampilkanRiwayat() {
   if (!Array.isArray(data)) return;
 
+  // Ambil tanggal terakhir dari data jimpitan
+  let tanggalTerakhir = "-";
+  if (data.length > 0) {
+    const sorted = [...data].sort((a, b) => new Date(b.timestamp || b.tanggal) - new Date(a.timestamp || a.tanggal));
+    tanggalTerakhir = sorted[0]?.tanggal || "-";
+  }
+
+  // ✅ Tampilkan tanggal di elemen #tanggal
+  const elTanggal = document.getElementById("tanggalRiwayat");
+  if (elTanggal) elTanggal.textContent = tanggalTerakhir;
+
+  // Gunakan data sesuai tanggal input terakhir
+  const dataHariIni = data.filter(d => d.tanggal === tanggalTerakhir);
+
+  // Lanjutkan semua bagian lain seperti jumlah petugas hadir, nominal, rekap harian...
+  // Menampilkan jumlah Petugas Hadir sesuai checkbox ON
+  const statusAbsen = JSON.parse(localStorage.getItem(`absenStatus_${grupTerpilih}`)) || {};
+  const jumlahHadir = Object.values(statusAbsen).filter(v => v === true).length;
+
+  const elPetugas = document.getElementById("jumlahPetugas");
+  if (elPetugas) {
+    elPetugas.textContent = `${jumlahHadir} Petugas`;
+  }
+
+  const total = dataHariIni.reduce((sum, d) => sum + (d.jumlah || 0), 0);
+  const elNominal = document.getElementById("totalNominal");
+  elNominal.textContent = total.toLocaleString("id-ID");
+
+
+  const dropdown = document.getElementById("petugasSelect");
+  if (dropdown) {
+    dropdown.innerHTML = `<option disabled selected>Yang bawa uang:</option>`;
+    const daftar = grupWarga[grupTerpilih] || [];
+    daftar.forEach(nama => {
+      const opt = document.createElement("option");
+      opt.value = nama;
+      opt.textContent = nama;
+      dropdown.appendChild(opt);
+    });
+  }
+
+  // 🔢 REKAP: Hitung total per tanggal
   const hari = {};
   data.forEach(({ tanggal, jumlah }) => {
     hari[tanggal] = (hari[tanggal] || 0) + jumlah;
@@ -1212,18 +1775,16 @@ function tampilkanRiwayat() {
           <span class="nominal">${total.toLocaleString("id-ID")}</span>
         </div>
       `).join('');
-
     rekapHari.innerHTML = isi || "<i>Belum ada data</i>";
   }
 
-  const today = new Date().toISOString().split('T')[0];
-  const dataHariIni = data.filter(d => d.tanggal === today);
-
+  // 🔢 REKAP KATEGORI: Tidak isi, Sudah, Belum
   const namaSudah = new Set(dataHariIni.map(d => d.nama));
   const namaTidakIsi = new Set(dataHariIni.filter(d => d.jumlah === 0).map(d => d.nama));
-  const namaIsi = new Set(dataHariIni.filter(d => d.jumlah > 0).map(d => d.nama));
-  const namaSemua = new Set(daftarWarga); // pastikan daftarWarga tersedia global
+  const namaSemua = new Set(daftarWarga);
   const namaBelum = [...namaSemua].filter(nama => !namaSudah.has(nama));
+
+
 
   // 🔴 TIDAK ISI
   const divTidakIsi = document.getElementById("rekapTidakIsi");
@@ -1265,6 +1826,10 @@ function tampilkanRiwayat() {
       `).join('') || "<i>Semua warga sudah dikunjungi</i>";
   }
 }
+
+
+
+
 
 // ===========================
 // 7. EKSPOR, BACKUP, KIRIM SERVER
@@ -1496,85 +2061,10 @@ function kirimSaran() {
 }
 
 
-//INPUT NAMA WARGA DI TABEL & ABSENSI
-  let namaTerpilih = "";
-  let jumlah = 0;
-  let data = JSON.parse(localStorage.getItem("jimpitanData")) || [];
 
-document.addEventListener("DOMContentLoaded", function () {
-  const daftarWarga = [
-    "ADI MBAH PITA", "AGUNG TRIARSO", "AGUS PURBOYONO", "AGUS SUHERMAN", "AHMAD JAUHARUL FARID",
-    "ALI FATAH", "ALI IMRON", "AMIN SETYONO", "ARIS SAMITIO", "BENNY", "BUDI BAGUS SANTOSO",
-    "DASUKI", "FAIZIN", "GIANTO ZAINI", "HARNO", "HARTOPO", "JOKO MBAK YANA", "KOZIN", "KUSNADI",
-    "MARIYO", "MOCH ALY MAS AD", "MUHAMMAD AGUS", "NGALI", "NUR AZIS", "NUR KHOLISH",
-    "PAULUS IRAWAN", "PURWANTO", "RAGIL SANTOSO", "REZA", "RISTANTO ARIS SAPUTRO",
-    "RIZKI AGUNG UTOMO", "ROS HARMANTO", "SARJO", "SLAMET", "SLAMET UTOMO", "SOLEKAN",
-    "SUBCHAN", "SUGIONO", "SUGIYANTO", "SUJONO", "SUPRIYADI", "SUPRIYANTO", "SUWITO",
-    "SUYANTONO", "UMAR SADLI", "WIDODO", "YUSUF LUKMAN HAKIM", "YOGA", "YOLANDA"
-  ];
 
-  const grupWarga = {
-    "GRUP 1": ["AGUS PURBOYONO", "AGUS SUHERMAN", "ALI IMRON", "BUDI BAGUS SANTOSO", "DASUKI", "SUBCHAN"],
-    "GRUP 2": ["AGUNG TRIARSO", "AHMAD JAUHARUL FARID", "ALI FATAH", "RISTANTO ARIS SAPUTRO", "UMAR SADLI", "WIDODO"],
-    "GRUP 3": ["MARIYO", "RAGIL SANTOSO", "RIZKI AGUNG UTOMO", "SUWITO", "SUYANTONO"],
-    "GRUP 4": ["AMIN SETYONO", "FAIZIN", "GIANTO ZAINI", "KOZIN", "SUGIYANTO", "YUSUF LUKMAN HAKIM"],
-    "GRUP 5": ["HARTOPO", "MUHAMMAD AGUS", "NUR AZIS", "NUR KHOLISH", "SLAMET UTOMO", "SUPRIYANTO"],
-    "GRUP 6": ["KUSNADI", "PAULUS IRAWAN", "ROS HARMANTO", "SARJO", "YOGA"], 
-    "GRUP 7": ["ARIS SAMITIO", "HARNO", "PURWANTO", "SOLEKAN", "SUJONO"],
-    "GRUP 8": ["BENNY", "JOKO MBAK YANA", "MOCH ALY MAS AD", "NGALI", "SLAMET", "SUPRIYADI"], 
-    "BUKAN PETUGAS": ["BUKAN PETUGAS"],
-  };
 
-  const inputCari = document.getElementById("cariNama");
-  const hasilDiv = document.getElementById("hasilPencarian");
-
-  // ========== HANDLE DROPDOWN GRUP ==========
-  const groupSelect = document.getElementById("groupSelect");
-  const namaSelect = document.getElementById("namaSelect");
-
-  // Event listener grup & nama dropdown
-  groupSelect.addEventListener("change", function () {
-    const selectedGroup = this.value;
-    namaSelect.innerHTML = '<option value="">Nama Petugas</option>';
-
-    if (grupWarga[selectedGroup]) {
-      grupWarga[selectedGroup].forEach(nama => {
-        const option = document.createElement("option");
-        option.value = nama;
-        option.textContent = nama;
-        namaSelect.appendChild(option);
-      });
-    }
-  });
-
-    // ✅ Tambahkan ini: update namaTerpilih saat dropdown berubah
-  namaSelect.addEventListener("change", function () {
-    namaTerpilih = this.value;
-  });
-
-  // ========== HANDLE PENCARIAN ==========
-  inputCari.addEventListener("input", function () {
-    const keyword = this.value.trim().toLowerCase();
-
-    if (keyword === "") {
-      hasilDiv.innerHTML = "🔍 Sedang mencari...";
-      hasilDiv.style.backgroundColor = "#f8f8f8";
-      namaTerpilih = "";
-      return;
-    }
-
-    const cocok = daftarWarga.find(nama => nama.toLowerCase().includes(keyword));
-    if (cocok) {
-      hasilDiv.textContent = cocok;
-      hasilDiv.style.backgroundColor = "#d0ebff"; // Biru muda
-      namaTerpilih = cocok;
-    } else {
-      hasilDiv.innerHTML = "❌ Nama tidak ditemukan";
-      hasilDiv.style.backgroundColor = "#ffe6e6"; // Merah muda
-      namaTerpilih = "";
-    }
-  });
-});
+document.addEventListener("DOMContentLoaded", tampilkanRiwayat);
 
 
   </script>
