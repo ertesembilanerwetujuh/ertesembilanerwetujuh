@@ -791,7 +791,7 @@ td.edit {
 </style>
 
 <!-- Catatan kecil untuk reset awal -->
-<p class="peringatan-reset">Reset data dulu sebelum masuk</p>
+<p class="peringatan-reset">Lingkungan aman warga nyaman</p>
 
 <style>
   .peringatan-reset {
@@ -1515,12 +1515,12 @@ function handleResetFromAbsen() {
 function masukApp() {
   const grup = document.getElementById("groupSelect").value;
   const nama = document.getElementById("namaSelect").value;
-  const sudahReset = localStorage.getItem("sudahReset");
+ //  const sudahReset = localStorage.getItem("sudahReset");
 
-  if (sudahReset !== "true") {
-    alert("🔒 Reset data dulu sebelum masuk");
-    return;
-  }
+ // if (sudahReset !== "true") {
+    alert("💪 #IndonesiaSalingJaga");
+  //  return;
+ // }
 
   if (!grup || !nama) return alert("Harap pilih grup dan nama terlebih dahulu!");
 
@@ -1551,7 +1551,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const grup = localStorage.getItem("grupTerpilih");
   const nama = localStorage.getItem("absensiNama");
 
-  if (lastAbsensi && now - parseInt(lastAbsensi) < 5 * 60 * 60 * 1000 && sudahReset === "true") {
+  if (lastAbsensi && now - parseInt(lastAbsensi) < 5 * 60 * 60 * 1000 ) { // && sudahReset === "true") {
     // Sembunyikan overlay login
     document.getElementById("absensiOverlay").style.display = "none";
 
@@ -2070,4 +2070,5 @@ document.addEventListener("DOMContentLoaded", tampilkanRiwayat);
   </script>
 </body>
 </html>
+
 
