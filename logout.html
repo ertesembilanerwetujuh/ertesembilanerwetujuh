@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
+    <title>Profil</title>
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/logout.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <link rel="apple-touch-icon" href="img/icon-192.png">
+    <link rel="icon" href="img/icon-192.png">
+
+</head>
+
+<body>
+
+    <main class="page profile-page">
+
+        <!-- ================= TOPBAR ================= -->
+
+        <header class="topbar">
+
+            <h1 class="brand">
+                Profil
+            </h1>
+
+        </header>
+
+        <!-- ================= CONTENT ================= -->
+
+        <div class="profile-content">
+
+            <!-- ================= PROFILE ================= -->
+
+            <section class="profile-card">
+
+                <img
+                    src="assets/icons/square-user.svg"
+                    class="profile-photo"
+                    alt="Profil">
+
+                <h2 id="statusTitle">
+                    Petugas
+                </h2>
+
+            </section>
+
+            <!-- ================= PETUGAS ================= -->
+
+            <section class="lapor-card">
+
+                <h3>Petugas Audit</h3>
+
+                <div class="row">
+                    <span>Grup</span>
+                    <strong id="grupAktif">-</strong>
+                </div>
+
+                <div class="row">
+                    <span>Petugas</span>
+                    <strong id="petugasAktif">-</strong>
+                </div>
+
+                <div class="row">
+                    <span>Status</span>
+                    <strong id="statusAudit">
+                        Sedang Aktif
+                    </strong>
+                </div>
+
+            </section>
+
+            <!-- ================= ACTION ================= -->
+
+            <section class="profile-action">
+
+                <button
+                    id="btnLogout"
+                    class="btn-primary">
+
+                    Logout
+
+                </button>
+
+                <button
+                    id="btnCancel"
+                    class="btn-secondary">
+
+                    Batal
+
+                </button>
+
+            </section>
+
+        </div>
+
+    </main>
+
+    <script type="module" src="js/logout.js"></script>
+
+</body>
+
+</html>

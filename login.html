@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
+    <title>Login Petugas</title>
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <link rel="apple-touch-icon" href="img/icon-192.png">
+    <link rel="icon" href="img/icon-192.png">
+
+</head>
+
+<body>
+
+<main class="page login-page">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+        <!-- Login -->
+
+        <h1 class="brand">Login petugas</h1>
+
+        <div class="topbar-right">
+
+        <button id="btnMenu" class="icon-button" type="button" aria-label="Menu">
+            <img src="assets/icons/info.svg" width="26" alt="menu">
+        </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- CONTENT -->
+    <section class="login-content">
+
+        <img
+            src="img/user-key.svg"
+            class="login-logo"
+            alt="Logo">
+
+        <h2>Jimpitan</h2>
+
+        <p>
+            Pilih grup dan nama petugas.
+        </p>
+
+
+        <div class="login-form">
+
+            <label for="grupSelect">
+                Grup
+            </label>
+
+            <select id="grupSelect">
+                <option value="">
+                    Memuat data...
+                </option>
+            </select>
+
+
+            <label for="petugasSelect">
+                Nama Petugas
+            </label>
+
+            <select id="petugasSelect">
+                <option value="">
+                    Pilih grup dahulu
+                </option>
+            </select>
+
+
+            <button
+                id="btnLogin"
+                class="btn-primary">
+
+                Masuk
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script type="module" src="js/login.js"></script>
+<script src="js/register-sw.js"></script>
+
+</body>
+</html>

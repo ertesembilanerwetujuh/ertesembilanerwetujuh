@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <meta charset="UTF-8">
+  <meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  <title>Jimpitan</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/jimpitan.css">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#ffffff">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="icon" href="img/icon-192.png">
+
+</head>
+
+<body>
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<main class="page input-page">
+
+
+  <!-- ================= TOPBAR ================= -->
+  <header class="topbar">
+
+
+
+    <a href="open-book.html" class="icon-button">
+        <img src="assets/icons/book-open-text.svg" alt="Profil">
+    </a>
+
+
+    <h1 class="brand">Jimpitan</h1>
+
+    <div class="topbar-right">
+
+            <!-- Profil -->
+      <button
+          id="btnProfil"
+          class="icon-button"
+          type="button">
+
+          <img
+              id="profilIcon"
+              src="assets/icons/square-check.svg"
+              alt="Filter Profil">
+
+      </button>
+
+      <!-- FILTER STATUS -->
+      <button id="filterBadge" class="filter-badge" type="button">
+        <span id="filterText">Filter</span>
+        <img id="filterIcon"
+            class="filter-icon"
+            src="assets/icons/text-align-justify.svg"
+            alt="Filter">
+      </button>
+
+      <!-- MENU -->
+      <button id="btnMenu"
+              class="icon-button"
+              type="button"
+              aria-label="Menu">
+        <img src="assets/icons/list-checks.svg"
+            width="26"
+            alt="Menu">
+      </button>
+
+    </div>
+
+  </header>
+
+
+<!-- ================= FILTER PROFIL ================= -->
+
+<div id="profilSidebar" class="sidebar">
+
+    <div
+        class="sidebar-item active"
+        data-profil="aktif">
+
+        Warga Aktif
+
+    </div>
+
+    <div
+        class="sidebar-item"
+        data-profil="nonaktif">
+
+        Non Aktif
+
+    </div>
+
+    <!--
+    <div
+        class="sidebar-item"
+        data-profil="semua">
+
+        Semua Warga
+
+    </div>
+    -->
+
+</div>
+
+
+  <!-- UPDATE BANNER -->
+<div id="updateBanner" class="update-banner hidden">
+
+    <div class="update-left">
+        <div class="update-icon">🚀</div>
+
+        <div class="update-text">
+            <strong>Pembaruan tersedia</strong>
+            <span>Versi terbaru siap digunakan.</span>
+        </div>
+    </div>
+
+    <div class="update-action">
+
+        <button id="btnNanti" class="btn-update secondary">
+            Nanti
+        </button>
+
+        <button id="btnPerbarui" class="btn-update primary">
+            Perbarui
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= SIDEBAR STATUS ================= -->
+<div id="sidebar" class="sidebar">
+
+  <div class="sidebar-content">
+
+    <h3 class="sidebar-title">Filter Status</h3>
+
+    <div class="sidebar-item active" data-filter="all">
+      <img src="assets/icons/circle-check-big.svg">
+      <span>Semua warga</span>
+    </div>
+
+    <div class="sidebar-item" data-filter="alert">
+      <img src="assets/icons/circle-alert.svg">
+      <span>Belum diinput</span>
+    </div>
+
+    <div class="sidebar-item" data-filter="done">
+      <img src="assets/icons/circle-check.svg">
+      <span>Input nominal</span>
+    </div>
+
+    <div class="sidebar-item" data-filter="zero">
+      <img src="assets/icons/circle-x.svg">
+      <span>Input kosong</span>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+<!-- ================= SIDEBAR BLOK ================= -->
+<div id="blokSidebar" class="sidebar blok-sidebar">
+
+    <div class="sidebar-content">
+
+        <h3 class="sidebar-title">
+            Filter Blok
+        </h3>
+
+        <div class="sidebar-item active" data-blok="all">
+            <img src="assets/icons/house.svg">
+            <span>SEMUA</span>
+        </div>
+
+        <div class="sidebar-item" data-blok="J. RAYA">
+            <img src="assets/icons/house.svg">
+            <span>J. RAYA</span>
+        </div>
+
+        <div class="sidebar-item" data-blok="A">
+            <img src="assets/icons/house.svg">
+            <span>BLOK A</span>
+        </div>
+
+        <div class="sidebar-item" data-blok="B">
+            <img src="assets/icons/house.svg">
+            <span>BLOK B</span>
+        </div>
+
+        <div class="sidebar-item" data-blok="C">
+            <img src="assets/icons/house.svg">
+            <span>BLOK C</span>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Overlay -->
+<div id="overlay" class="overlay"></div>
+
+
+
+  <!-- ================= SEARCH ================= -->
+  <div class="search-form">
+
+      <div class="search-row">
+
+          <div class="search-box">
+
+              <img src="assets/icons/search.svg" class="icon-left">
+
+              <input
+                  id="searchInput"
+                  type="text"
+                  placeholder="Cari nama warga...">
+
+              <img
+                  src="assets/icons/x.svg"
+                  id="clearSearch"
+                  class="icon-right">
+
+          </div>
+
+          <button id="blokBadge" class="blok-badge">
+
+              <img src="assets/icons/house.svg" alt="Blok">
+
+              <span id="blokText">Semua</span>
+
+          </button>
+
+      </div>
+
+  </div>
+
+
+
+  <!-- ================= LIST ================= -->
+  <div id="listWarga"></div>
+
+  <!-- ================= NAV ================= -->
+  <nav class="bottom-nav">
+
+    <a href="jimpitan.html" class="nav-item is-active">
+      <img src="assets/icons/square-check.svg">
+      <span>Input</span>
+    </a>
+
+    <a href="lapor.html" class="nav-item">
+      <img src="assets/icons/square-chart-gantt.svg">
+      <span>Lapor</span>
+    </a>
+
+    <a href="rekap.html" class="nav-item">
+      <img src="assets/icons/wallet-minimal.svg">
+      <span>Rekap</span>
+    </a>
+
+    <a href="tabel.html" class="nav-item">
+      <img src="assets/icons/square-menu.svg">
+      <span>Tabel</span>
+    </a>
+
+    <a href="logout.html" class="nav-item">
+      <img src="assets/icons/square-user.svg">
+      <span>Profil</span>
+    </a>
+
+  </nav>
+
+
+  <!-- ================= DETAIL ================= -->
+<div id="detailPage" class="detail-page">
+
+  <div class="detail-page-inner">
+
+    <div class="detail-header">
+
+      <button id="btnBack" class="detail-back" type="button">
+        <img src="assets/icons/arrow-left.svg" alt="Kembali">
+      </button>
+
+    </div>
+
+    <div class="detail-body">
+
+      <div id="detailRumah" class="detail-rumah-big">No. Rumah</div>
+
+      <div id="detailId" class="detail-id-big">ID</div>
+
+      <div id="detailNamaBig" class="detail-nama-big">Nama</div>
+
+      <div id="detailValue" class="detail-value">0</div>
+
+      <div class="detail-note-title">Hari ini</div>
+
+      <div class="detail-note-desc">
+        Jika direvisi, nilai terakhir diterapkan
+      </div>
+
+      <div class="counter">
+        <button id="minus">-</button>
+        <button id="plus">+</button>
+      </div>
+
+      <button id="saveBtn" class="save">
+        Simpan
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+</main>
+
+
+<script src="js/back-handler.js"></script>
+
+<!-- SCRIPT -->
+<script type="module" src="js/jimpitan.js"></script>
+
+<!-- REGISTER SERVICE WORKER -->
+<script type="module" src="js/register-sw.js"></script>
+
+</body>
+</html>

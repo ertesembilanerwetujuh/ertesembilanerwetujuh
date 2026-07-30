@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <meta charset="UTF-8">
+  <meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  <title>Laporan</title>
+
+  <!-- FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/lapor.css">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#ffffff">
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <link rel="apple-touch-icon" href="img/icon-192.png">
+  <link rel="icon" href="img/icon-192.png">
+
+</head>
+
+<body>
+
+<main class="page lapor-page">
+
+
+  <!-- ================= TOPBAR ================= -->
+  <header class="topbar">
+
+    <!-- Profil -->
+    <a href="open-book.html" class="icon-button">
+        <img src="assets/icons/book-open-text.svg" alt="Profil">
+    </a>
+
+    <h1 class="brand">Laporan</h1>
+
+    <div class="topbar-right">
+
+      <!-- MENU -->
+      <button id="btnMenu"
+              class="icon-button"
+              type="button"
+              aria-label="Menu">
+        <img src="assets/icons/menu.svg"
+            width="26"
+            alt="Menu">
+      </button>
+
+    </div>
+
+  </header>
+
+
+
+
+
+
+
+<!-- ================= TOTAL ================= -->
+
+<section class="lapor-card">
+
+    <h3>Ringkasan Jimpitan</h3>
+
+    <div class="row">
+        <span>Total Pemasukan</span>
+        <strong id="totalUang">0</strong>
+    </div>
+
+    <div class="row">
+        <span>Pemasukan Harian (Hari ini)</span>
+        <strong id="totalNominal">0</strong>
+    </div>
+
+    <div class="row">
+        <span>Pemasukan Berkala</span>
+        <strong id="totalPemasukanLain">0</strong>
+    </div>
+
+</section>
+
+<!-- ================= BUTTON ================= -->
+
+<section class="lapor-card">
+
+<button id="btnKirim">
+
+Kirim Data Jimpitan
+
+</button>
+
+</section>
+
+
+<section class="lapor-card">
+
+    <h3>Riwayat Jimpitan</h3>
+
+<div class="summary-row">
+    <span>Total Jimpitan Aktif (Harian)</span>
+    <strong id="totalRumah">51</strong>
+    <small>Warga</small>
+</div>
+
+<div class="summary-row">
+    <span>Total Mengisi Jimpitan</span>
+    <strong id="sudahInput">26</strong>
+    <small id="persenNominal">51%</small>
+</div>
+
+<div class="summary-row">
+    <span>Total Tidak Mengisi</span>
+    <strong id="kosongInput">25</strong>
+    <small id="persenKosong">49%</small>
+</div>
+
+<div class="summary-row">
+    <span>Total Belum Diinput</span>
+    <strong id="belumInput">0</strong>
+    <small id="persenBelum">0%</small>
+</div>
+
+</section>
+
+
+
+<!-- ================= RINCIAN INPUT ================= -->
+
+<!-- ================= RINCIAN INPUT ================= -->
+
+<section class="rincian-input accordion">
+
+    <button class="accordion-header" id="rincianToggle">
+
+        <span>
+            Rincian Input Jimpitan
+        </span>
+
+        <svg id="rincianArrow" width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M7 10L12 15L17 10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
+
+    </button>
+
+
+    <div class="accordion-content" id="rincianContent">
+
+        <div id="listRincianInput"></div>
+
+    </div>
+
+
+</section>
+
+
+<!-- ================= PEMBAWA ================= -->
+
+<section class="lapor-card">
+
+<h3>Uang Dibawa Oleh</h3>
+
+<select id="pembawaUang">
+
+<option value="">
+Pilih Petugas
+</option>
+
+</select>
+
+</section>
+
+
+<!-- ================= PETUGAS ================= -->
+
+<section class="lapor-card">
+
+<h3>Petugas Audit</h3>
+
+<div class="row">
+<span>Grup</span>
+<strong id="grupAktif">-</strong>
+</div>
+
+<div class="row">
+<span>Petugas</span>
+<strong id="petugasAktif">-</strong>
+</div>
+
+<div class="row">
+<span>Status</span>
+<strong id="statusAudit">
+Sedang Aktif
+</strong>
+</div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<section class="lapor-card">
+
+    <h3>Absensi Petugas</h3>
+
+    <div id="listAbsensi"></div>
+
+</section>
+
+
+
+<section class="lapor-card">
+
+    <button id="btnAbsensi">
+
+        Kirim Data Absensi
+
+    </button>
+
+</section>
+
+<!-- ================= CHECKLIST ================= -->
+
+<section class="lapor-card">
+
+<h3>Persediaan</h3>
+
+<div class="cek-row">
+    <span>Air Galon</span>
+    <select id="cekGalon">
+        <option value="">00%</option>
+        <option>10%</option>
+        <option>20%</option>
+        <option>30%</option>
+        <option>40%</option>
+        <option>50%</option>
+        <option>60%</option>
+        <option>70%</option>
+        <option>80%</option>
+        <option>90%</option>
+        <option>99%</option>
+    </select>
+</div>
+
+<div class="cek-row">
+    <span>Kopi</span>
+    <select id="cekKopi">
+        <option value="">00%</option>
+        <option>10%</option>
+        <option>20%</option>
+        <option>30%</option>
+        <option>40%</option>
+        <option>50%</option>
+        <option>60%</option>
+        <option>70%</option>
+        <option>80%</option>
+        <option>90%</option>
+        <option>99%</option>
+    </select>
+</div>
+
+<div class="cek-row">
+    <span>Gula</span>
+    <select id="cekGula">
+        <option value="">00%</option>
+        <option>10%</option>
+        <option>20%</option>
+        <option>30%</option>
+        <option>40%</option>
+        <option>50%</option>
+        <option>60%</option>
+        <option>70%</option>
+        <option>80%</option>
+        <option>90%</option>
+        <option>99%</option>
+    </select>
+</div>
+
+<div class="cek-row">
+    <span>Teh</span>
+    <select id="cekTeh">
+        <option value="">00%</option>
+        <option>10%</option>
+        <option>20%</option>
+        <option>30%</option>
+        <option>40%</option>
+        <option>50%</option>
+        <option>60%</option>
+        <option>70%</option>
+        <option>80%</option>
+        <option>90%</option>
+        <option>99%</option>
+    </select>
+</div>
+
+</section>
+
+
+<!-- ================= CATATAN ================= -->
+
+<section class="lapor-card">
+
+<h3>Catatan</h3>
+
+<textarea
+id="catatan"
+rows="4"
+placeholder="Catatan audit..."></textarea>
+
+</section>
+
+
+<section class="lapor-card">
+
+<button id="btnSalin">
+
+Salin Laporan
+
+</button>
+
+</section>
+
+
+
+
+<section class="lapor-card accordion">
+
+    <button class="accordion-header" id="infoToggle">
+
+        <span>Informasi Lainnya</span>
+
+        <svg id="infoArrow" width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M7 10L12 15L17 10"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
+
+    </button>
+
+    <div class="accordion-content" id="infoContent">
+
+        <div class="summary-row">
+            <span>Warga Aktif (Harian)</span>
+            <strong id="totalHarian">0</strong>
+            <small>Warga</small>
+        </div>
+
+        <div class="summary-row">
+            <span>Warga Aktif (Mingguan)</span>
+            <strong id="totalMingguan">0</strong>
+            <small>Warga</small>
+        </div>
+
+        <div class="summary-row">
+            <span>Warga Aktif (Bulanan)</span>
+            <strong id="totalBulanan">0</strong>
+            <small>Warga</small>
+        </div>
+
+        <div class="summary-row">
+            <span>Warga Aktif (Tahunan)</span>
+            <strong id="totalTahunan">0</strong>
+            <small>Warga</small>
+        </div>
+
+        <div class="summary-row">
+            <span>Warga Non Aktif</span>
+            <strong id="totalNonAktif">0</strong>
+            <small>Warga</small>
+        </div>
+
+        <div class="summary-row total-row">
+            <span>Total Warga</span>
+            <strong id="totalWarga">0</strong>
+            <small>Warga</small>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+  <!-- ================= NAV ================= -->
+  <nav class="bottom-nav">
+
+    <a href="jimpitan.html" class="nav-item">
+      <img src="assets/icons/square-check.svg">
+      <span>Input</span>
+    </a>
+
+    <a href="lapor.html" class="nav-item is-active">
+      <img src="assets/icons/square-chart-gantt.svg">
+      <span>Lapor</span>
+    </a>
+
+    <a href="rekap.html" class="nav-item">
+      <img src="assets/icons/wallet-minimal.svg">
+      <span>Rekap</span>
+    </a>
+
+    <a href="tabel.html" class="nav-item">
+      <img src="assets/icons/square-menu.svg">
+      <span>Tabel</span>
+    </a>
+
+    <a href="logout.html" class="nav-item">
+      <img src="assets/icons/square-user.svg">
+      <span>Profil</span>
+    </a>
+
+  </nav>
+
+
+
+<!-- Loading -->
+<div id="loading" class="loading hidden">
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <p>Mengirim data ke server...</p>
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="toast"></div>
+<div id="toastBig" class="toast-big"></div>
+
+
+
+</main>
+
+
+
+<script src="js/back-handler.js"></script>
+
+
+<script type="module"
+src="js/lapor.js"></script>
+
+</body>
+</html>
