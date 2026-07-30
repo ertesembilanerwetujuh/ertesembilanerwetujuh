@@ -1,0 +1,92 @@
+/* =====================================================
+   OFFLINE PAGE
+===================================================== */
+
+.offline-page{
+
+    width:var(--safe-width);
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+
+    background:var(--surface);
+
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.offline-content{
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:32px 24px;
+
+    text-align:center;
+
+}
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.offline-logo{
+
+    width:96px;
+    height:96px;
+
+    margin-bottom:28px;
+
+}
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.offline-title{
+
+    font-size:28px;
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.offline-description{
+
+    margin-top:16px;
+
+    max-width:290px;
+
+    font-size:14px;
+    line-height:1.7;
+
+    color:var(--text-light);
+
+}
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+#btnRetry{
+
+    width:100%;
+
+    max-width:260px;
+
+    margin-top:36px;
+
+}

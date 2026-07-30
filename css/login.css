@@ -1,0 +1,233 @@
+/* ================= TOPBAR ================= */
+.topbar{
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+
+    padding:14px var(--side-padding);
+
+    background:var(--surface);
+
+    border-bottom:1px solid var(--border);
+
+    position:relative;
+
+}
+
+.topbar-right{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+}
+
+.brand{
+
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+
+    font-size:26px;
+    font-weight:700;
+    color:var(--text);
+
+    letter-spacing:.3px;
+
+    white-space:nowrap;
+
+}
+
+.icon-button{
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:none;
+    border-radius:var(--radius);
+
+    background:transparent;
+
+    cursor:pointer;
+
+    transition:var(--transition);
+
+}
+
+.icon-button img{
+
+    width:24px;
+    height:24px;
+
+    display:block;
+
+}
+
+
+
+/* ================= CONTENT ================= */
+
+.login-content{
+
+    flex:1;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    padding:28px 22px;
+
+}
+
+
+/* ================= LOGO ================= */
+
+.login-logo{
+
+    width:90px;
+    height:90px;
+
+    display:block;
+
+    margin:0 auto 24px;
+
+}
+
+
+/* ================= TITLE ================= */
+
+.login-content h2{
+
+    text-align:center;
+
+    font-size:28px;
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.login-content p{
+
+    margin-top:10px;
+
+    text-align:center;
+
+    font-size:14px;
+    line-height:1.7;
+
+    color:var(--text-light);
+
+}
+
+
+/* ================= FORM ================= */
+
+.login-form{
+
+    margin-top:40px;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+
+/* ================= LABEL ================= */
+
+.login-form label{
+
+    margin-bottom:8px;
+
+    display:block;
+
+    font-size:14px;
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+
+/* ================= SELECT ================= */
+
+.login-form select{
+
+    width:100%;
+    height:48px;
+
+    padding:0 14px;
+
+    background:#fff;
+
+    font-size:15px;
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    background-image:url("../assets/icons/chevron-down.svg");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    background-size:18px;
+
+}
+
+
+/* ================= BUTTON ================= */
+
+#btnLogin{
+
+    margin-top:14px;
+
+    width:100%;
+
+}
+
+
+/* ================= DISABLED ================= */
+
+select:disabled{
+
+    background:#f7f7f7;
+
+    color:#999;
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-height:700px){
+
+    .login-content{
+
+        padding:20px;
+
+    }
+
+    .login-logo{
+
+        width:72px;
+        height:72px;
+
+    }
+
+    .login-form{
+
+        margin-top:28px;
+
+    }
+
+}
