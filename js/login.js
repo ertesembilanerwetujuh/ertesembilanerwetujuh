@@ -23,7 +23,7 @@ async function init() {
 
         if (session) {
 
-            location.href = "jimpitan.html";
+            location.replace("jimpitan.html");
             return;
 
         }
@@ -249,7 +249,7 @@ const session = {
 
         );
 
-        location.href = "jimpitan.html";
+        location.replace("jimpitan.html");
 
     } catch (err) {
 
