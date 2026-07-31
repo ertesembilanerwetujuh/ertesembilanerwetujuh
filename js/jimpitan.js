@@ -53,7 +53,14 @@ const session = JSON.parse(
     localStorage.getItem("petugas_session")
 );
 
-const isPetugas = !!session;
+if (!session) {
+
+    location.replace("login.html");
+    throw new Error("Session tidak ditemukan.");
+
+}
+
+const isPetugas = true;
 
 /* ===================================================
    STATE
