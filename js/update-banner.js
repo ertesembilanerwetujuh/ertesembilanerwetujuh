@@ -32,7 +32,12 @@ btnNanti?.addEventListener("click", () => {
 
 });
 
+
+
+
 btnPerbarui?.addEventListener("click", () => {
+
+    sembunyikanBannerUpdate();
 
     if (window.updateApp) {
 
