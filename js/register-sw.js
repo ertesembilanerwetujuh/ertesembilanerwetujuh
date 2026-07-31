@@ -8,6 +8,18 @@ if ("serviceWorker" in navigator) {
 
             const reg = await navigator.serviceWorker.register("./sw.js");
 
+            window.updateApp = () => {
+
+                if (reg.waiting) {
+
+                    reg.waiting.postMessage({
+                        type: "SKIP_WAITING"
+                    });
+
+                }
+
+            };
+
             console.log("Service Worker aktif");
 
             // cek update
