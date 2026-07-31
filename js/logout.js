@@ -80,7 +80,7 @@ async function logout() {
 
         clearLocal();
 
-        location.href = "login.html";
+        location.replace("login.html");
 
         return;
 
@@ -121,8 +121,9 @@ async function logout() {
 
     clearLocal();
 
-    location.href =
-        "login.html";
+    location.replace(
+        "login.html"
+    );
 
 }
 
@@ -166,8 +167,8 @@ el.logout.onclick = ()=>{
 
 
 
-el.cancel.onclick = ()=>{
+el.cancel.onclick = () => {
 
-    history.back();
+    location.href = "jimpitan.html";
 
 };
